@@ -1,0 +1,139 @@
+{% include 'overall_header.html' %}
+
+<style type="text/css" scoped xmlns="http://www.w3.org/1999/html">
+	form#acp_ta_general fieldset dl {
+		margin-bottom:    1em;
+		font-size:        0.85em;
+		background-color: #dadada;
+		padding:          5px 5px 10px 15px;
+		border-radius:    6px;
+	}
+
+	form#acp_ta_general fieldset dl:hover {
+		background-color: antiquewhite;
+	}
+
+	input[type=checkbox].css-checkbox {
+		position: absolute;
+		z-index:  -1000;
+		left:     -1000px;
+		overflow: hidden;
+		clip:     rect(0 0 0 0);
+		height:   1px;
+		width:    1px;
+		margin:   -1px;
+		padding:  0;
+		border:   0;
+	}
+
+	input[type=checkbox].css-checkbox + label.css-label {
+		padding-left:   17px;
+		height:         12px;
+		display:        inline-block;
+		line-height:    12px;
+		cursor:         pointer;
+
+	}
+
+	input[type=checkbox].css-checkbox:checked + label.css-label {
+		background-position: 0 -12px;
+	}
+
+	label.css-label {
+		background:            url(/ext/mop/timeago/adm/style/images/tiny_orange_checkbox.png) no-repeat 0 0;
+		-webkit-touch-callout: none;
+		-webkit-user-select:   none;
+		-moz-user-select:      none;
+		-ms-user-select:       none;
+		user-select:           none;
+	}
+
+	dd {
+		padding: 13px;
+	}
+</style>
+
+<h1>{{ lang('TA_GENERAL_SETTINGS') }}</h1>
+<p>{{ lang('TA_GENERAL_SETTINGS_EXPLAIN') }}</p>
+
+{% if S_ERROR %}
+	<div class="errorbox">
+		<h3>{{ lang('WARNING') }}</h3>
+		<p>{{ ERROR_MSG }}</p>
+	</div>
+{% endif %}
+
+<form id="acp_ta_general" method="post" action="{{ U_ACTION }}">
+	<fieldset>
+		<legend>{{ lang('TA_DISPLAY_SETTINGS') }}</legend>
+		<dl>
+			<dt>
+				<label>{{ lang('TA_CAT') }}{{ lang('COLON') }}</label><br/>
+				<span>{{ lang('TA_CAT_EXPLAIN') }}</span>
+				<br/><br/>
+				<label>{{ lang('TA_EXTENDED') }}{{ lang('COLON') }}</label><br/>
+				<span>{{ lang('TA_EXTENDED_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<label><input type="radio" class="radio" name="ta_cat" value="0" {% if TA_CAT == 0 %} checked="checked"{% endif %}/> {{ lang('TA_OFF') }}</label>
+				<label><input type="radio" class="radio" name="ta_cat" value="1" {% if TA_CAT == 1 %} checked="checked"{% endif %}/> {{ lang('TA_SHORT') }}</label>
+				<label><input type="radio" class="radio" name="ta_cat" value="2" {% if TA_CAT == 2 %} checked="checked"{% endif %}/> {{ lang('TA_MEDIUM') }}</label>
+				<label><input type="radio" class="radio" name="ta_cat" value="3" {% if TA_CAT == 3 %} checked="checked"{% endif %}/> {{ lang('TA_FULL') }}</label>
+			</dd>
+			<dd>
+				<input type="checkbox" name="ta_cat_extended" value="1" class="css-checkbox" id="ta_cat_extended" {% if TA_CAT_EXTENDED == 1 %} checked="checked"{% endif %}/>
+				<label for="ta_cat_extended" class="css-label">{{ lang('TA_EXTENDED') }}  <span>{{ lang('TA_EXTENDED_EXAMPLE') }}</span></label>
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label>{{ lang('TA_VIEWFORUM') }}{{ lang('COLON') }}</label><br/>
+				<span>{{ lang('TA_VIEWFORUM_EXPLAIN') }}</span>
+				<br/><br/>
+				<label>{{ lang('TA_EXTENDED') }}{{ lang('COLON') }}</label><br/>
+				<span>{{ lang('TA_EXTENDED_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<label><input type="radio" class="radio" name="ta_viewforum" value="0" {% if TA_VIEWFORUM == 0 %} checked="checked"{% endif %}/> {{ lang('TA_OFF') }}</label>
+				<label><input type="radio" class="radio" name="ta_viewforum" value="1" {% if TA_VIEWFORUM == 1 %} checked="checked"{% endif %}/> {{ lang('TA_SHORT') }}</label>
+				<label><input type="radio" class="radio" name="ta_viewforum" value="2" {% if TA_VIEWFORUM == 2 %} checked="checked"{% endif %}/> {{ lang('TA_MEDIUM') }}</label>
+				<label><input type="radio" class="radio" name="ta_viewforum" value="3" {% if TA_VIEWFORUM == 3 %} checked="checked"{% endif %}/> {{ lang('TA_FULL') }}</label>
+			</dd>
+			<dd>
+				<input type="checkbox" name="ta_viewforum_extended" value="1" class="css-checkbox" id="ta_viewforum_extended" {% if TA_VIEWFORUM_EXTENDED == 1 %} checked="checked"{% endif %}/>
+				<label for="ta_viewforum_extended" class="css-label">{{ lang('TA_EXTENDED') }}  <span>{{ lang('TA_EXTENDED_EXAMPLE') }}</span></label>
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label>{{ lang('TA_VIEWTOPIC') }}{{ lang('COLON') }}</label><br/>
+				<span>{{ lang('TA_VIEWTOPIC_EXPLAIN') }}</span>
+				<br/><br/>
+				<label>{{ lang('TA_EXTENDED') }}{{ lang('COLON') }}</label><br/>
+				<span>{{ lang('TA_EXTENDED_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<label><input type="radio" class="radio" name="ta_viewtopic" value="0" {% if TA_VIEWTOPIC == 0 %} checked="checked"{% endif %}/> {{ lang('TA_OFF') }}</label>
+				<label><input type="radio" class="radio" name="ta_viewtopic" value="1" {% if TA_VIEWTOPIC == 1 %} checked="checked"{% endif %}/> {{ lang('TA_SHORT') }}</label>
+				<label><input type="radio" class="radio" name="ta_viewtopic" value="2" {% if TA_VIEWTOPIC == 2 %} checked="checked"{% endif %}/> {{ lang('TA_MEDIUM') }}</label>
+				<label><input type="radio" class="radio" name="ta_viewtopic" value="3" {% if TA_VIEWTOPIC == 3 %} checked="checked"{% endif %}/> {{ lang('TA_FULL') }}</label>
+			</dd>
+			<dd>
+				<input type="checkbox" name="ta_viewtopic_extended" value="1" class="css-checkbox" id="ta_viewtopic_extended" {% if TA_VIEWTOPIC_EXTENDED == 1 %} checked="checked"{% endif %}/>
+				<label for="ta_viewtopic_extended" class="css-label">{{ lang('TA_EXTENDED') }}  <span>{{ lang('TA_EXTENDED_EXAMPLE') }}</span></label>
+			</dd>
+		</dl>
+	</fieldset>
+
+	<fieldset>
+		<legend>{{ lang('ACP_SUBMIT_CHANGES') }}</legend>
+		<p class="submit-buttons">
+			<input class="button1" type="submit" id="submit" name="submit" value="{{ lang('SUBMIT') }}"/>&nbsp;
+			<input class="button2" type="reset" id="reset" name="reset" value="{{ lang('RESET') }}"/>
+		</p>
+		{{ S_FORM_TOKEN }}
+	</fieldset>
+
+</form>
+
+{% include 'overall_footer.html' %}

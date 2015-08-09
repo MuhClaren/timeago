@@ -1,0 +1,15 @@
+services:
+  mop.timeago.manager:
+    class: mop\timeago\core\timeago_functions
+    arguments:
+      - @config
+      - @dbal.conn
+      - @template
+      - @user
+
+  mop.timeago.listener:
+    class: mop\timeago\event\listener
+    arguments:
+      - @mop.timeago.manager
+    tags:
+      - { name: event.listener }
