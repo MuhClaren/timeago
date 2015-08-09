@@ -1,0 +1,26 @@
+# timeago
+    Extension Name: TimeAgo
+    Author: MuhClaren
+    Extension Description: This extension changes the phpBB native timestamps to a Time Ago format. Example: (Before) [b]January 1, 1984[/b] (After) [b]8 Months, 2 Weeks, 3 Days Ago[/b].
+
+    Requirements: PHP 5.4, phpBB 3.1.x
+
+    Language Support: (British English) and [b]en_us[/b] (American English). Language contributions are welcome.
+
+    Features: 
+    * Compatible with all styles that use the native phpBB timestamp template tags 
+    *100% PHP, no Javascript or template editing necessary 
+    *Based on server time, no more issue with incorrect guest timezones
+    *Three (3) adjustable levels of detail 
+    *Support for times from Seconds through Decades 
+    *Configurable display options for Index.php, viewforum.php, viewtopic.php 
+    *"Extended" detail option appends phpBB native timestamp to the end of the TimeAgo output: 8 Months 1 Week Ago (January 1, 2015)
+
+     Quickstart: Install: Copy folder "mop" to your /ext directory. (final path looks like this: /ext/mop/timeago).  
+                 Enable: Open your ACP --> Customise --> locate TimeAgo extension in the list, click enable. 
+                 Optional: Configuration options are available from the "Extensions" tab, TimeAgo General Settings.
+
+     Screenshots: 
+     http://www.imageforge.us/image/1NZX
+     http://www.imageforge.us/image/gnvR
+     http://www.imageforge.us/image/12Rf
