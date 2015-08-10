@@ -74,32 +74,30 @@ class timeago_functions
 		$pds    = [$this->user->lang('TA_SECOND'), $this->user->lang('TA_MINUTE'), $this->user->lang('TA_HOUR'), $this->user->lang('TA_DAY'), $this->user->lang('TA_WEEK'), $this->user->lang('TA_MONTH'), $this->user->lang('TA_YEAR'), $this->user->lang('TA_DECADE')];
 		$lngh   = [1, 60, 3600, 86400, 604800, 2630880, 31570560, 315705600];
 
-		for ($v = (count($lngh) - 1); ($v >= 0) && (($no = $dif / $lngh[$v]) <= 1); $v--)
+		for ($v = (count($lngh) - 1); ($v >= 0) && (($no = $dif / $lngh[$v]) <= 1); $v--);
 
-		{
 			if ($v < 0)
 			{
 				$v = 0;
 			}
-		}
 
-		$_tm = ($cur_tm - ($dif % $lngh[$v]));
+			$_tm = ($cur_tm - ($dif % $lngh[$v]));
 
-		$no = floor($no);
+			$no = floor($no);
 
-		if ($no <> 1)
-		{
-			$pds[$v] .= 's';
-		}
+			if ($no <> 1)
+			{
+				$pds[$v] .= 's';
+			}
 
-		$x = sprintf('%d %s ', $no, $pds[$v]);
+			$x = sprintf('%d %s ', $no, $pds[$v]);
 
-		if (($rcs > 1) && ($v >= 1) && (($cur_tm - $_tm) > 0))
-		{
-			$x .= $this->time_ago($_tm, --$rcs);
-		}
+			if (($rcs > 1) && ($v >= 1) && (($cur_tm - $_tm) > 0))
+			{
+				$x .= $this->time_ago($_tm, --$rcs);
+			}
 
-		return $x;
+			return $x;
 	}
 
 	/**
