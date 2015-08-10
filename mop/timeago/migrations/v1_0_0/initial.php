@@ -30,7 +30,7 @@ class initial extends \phpbb\db\migration\migration
 	{
 		return [
 			['config.add', ['ta_active', 1]],
-			['config.add', ['ta_version', '1.1.8']],
+			['config.add', ['ta_version', '1.1.9']],
 			['config.add', ['ta_cat', 2]],
 			['config.add', ['ta_cat_extended', 0]],
 			['config.add', ['ta_viewforum', 2]],
