@@ -28,6 +28,9 @@ class timeago_module
 	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
 
+	/** @var string */
+	protected $phpbb_root_path;
+
 	/** @var \phpbb\request\request_interface */
 	protected $request;
 
@@ -51,10 +54,11 @@ class timeago_module
 	 */
 	public function main($id, $mode)
 	{
-		$this->config   = $GLOBALS['config'];
-		$this->user     = $GLOBALS['user'];
-		$this->request  = $GLOBALS['request'];
-		$this->template = $GLOBALS['template'];
+		$this->config          = $GLOBALS['config'];
+		$this->user            = $GLOBALS['user'];
+		$this->phpbb_root_path = $GLOBALS['phpbb_root_path'];
+		$this->request         = $GLOBALS['request'];
+		$this->template        = $GLOBALS['template'];
 		$this->user->add_lang('acp/common');
 		$this->user->add_lang_ext('mop/timeago', 'timeago_acp');
 
@@ -93,6 +97,7 @@ class timeago_module
 				// set the template variables
 				$this->template->assign_vars(
 					[
+						'TA_FORUM_ROOT'         => $this->phpbb_root_path,
 						'TA_CAT'                => (!empty($this->config['ta_cat'])) ? $this->config['ta_cat'] : 0,
 						'TA_CAT_EXTENDED'       => (!empty($this->config['ta_cat_extended'])) ? TRUE : FALSE,
 						'TA_VIEWFORUM'          => (!empty($this->config['ta_viewforum'])) ? $this->config['ta_viewforum'] : 0,

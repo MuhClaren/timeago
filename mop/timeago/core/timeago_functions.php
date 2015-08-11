@@ -76,28 +76,28 @@ class timeago_functions
 
 		for ($v = (count($lngh) - 1); ($v >= 0) && (($no = $dif / $lngh[$v]) <= 1); $v--);
 
-			if ($v < 0)
-			{
-				$v = 0;
-			}
+		if ($v < 0)
+		{
+			$v = 0;
+		}
 
-			$_tm = ($cur_tm - ($dif % $lngh[$v]));
+		$_tm = ($cur_tm - ($dif % $lngh[$v]));
 
-			$no = floor($no);
+		$no = floor($no);
 
-			if ($no <> 1)
-			{
-				$pds[$v] .= 's';
-			}
+		if ($no <> 1)
+		{
+			$pds[$v] .= 's';
+		}
 
-			$x = sprintf('%d %s ', $no, $pds[$v]);
+		$x = sprintf('%d %s ', $no, $pds[$v]);
 
-			if (($rcs > 1) && ($v >= 1) && (($cur_tm - $_tm) > 0))
-			{
-				$x .= $this->time_ago($_tm, --$rcs);
-			}
+		if (($rcs > 1) && ($v >= 1) && (($cur_tm - $_tm) > 0))
+		{
+			$x .= $this->time_ago($_tm, --$rcs);
+		}
 
-			return $x;
+		return $x;
 	}
 
 	/**
