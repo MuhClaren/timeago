@@ -87,7 +87,7 @@ class timeago_functions
 
 		if ($no <> 1)
 		{
-			$pds[$v] .= 's';
+			$pds[$v] .= $this->user->lang('TA_PLURAL_CHARS');
 		}
 
 		$x = sprintf('%d %s ', $no, $pds[$v]);

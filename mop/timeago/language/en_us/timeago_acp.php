@@ -31,8 +31,9 @@ if (empty($lang) || is_array($lang) === FALSE)
 $lang = array_merge(
 	$lang,
 	[
+		// define the characters of the language used for plurals. For example, english uses "s" to indicate more than one day (days).
+		'TA_PLURAL_CHARS'             => 's',
 		// common lang variables
-		'CHARS'                       => 'Characters',
 		'TA_SECOND'                   => 'Second',
 		'TA_MINUTE'                   => 'Minute',
 		'TA_HOUR'                     => 'Hour',
