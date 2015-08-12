@@ -38,7 +38,7 @@ $lang = array_merge(
 		'TA_DAY'                      => [0 => 'days', 1 => 'day', 2 => 'days', 3 => 'days', 4 => 'days',],
 		'TA_WEEK'                     => [0 => 'weeks', 1 => 'week', 2 => 'weeks', 3 => 'weeks', 4 => 'weeks',],
 		'TA_MONTH'                    => [0 => 'months', 1 => 'month', 2 => 'months', 3 => 'months', 4 => 'months',],
-		'TA_YEAR'                     => [0 => 'Years', 1 => 'Year', 2 => 'Years', 3 => 'Years', 4 => 'Years',],
+		'TA_YEAR'                     => [0 => 'years', 1 => 'year', 2 => 'years', 3 => 'years', 4 => 'years',],
 		'TA_DECADE'                   => [0 => 'decades', 1 => 'decade', 2 => 'decades', 3 => 'decades', 4 => 'decades',],
 		'TA_AGO'                      => 'ago',
 		'TA_OFF'                      => 'Off',
