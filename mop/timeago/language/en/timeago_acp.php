@@ -31,21 +31,20 @@ if (empty($lang) || is_array($lang) === FALSE)
 $lang = array_merge(
 	$lang,
 	[
-		// define the characters of the language used for plurals. For example, english uses "s" to indicate more than one day (days).
-		'TA_PLURAL_CHARS'             => 's',
-		// common lang variables
-		'TA_SECOND'                   => 'Second',
-		'TA_MINUTE'                   => 'Minute',
-		'TA_HOUR'                     => 'Hour',
-		'TA_DAY'                      => 'Day',
-		'TA_WEEK'                     => 'Week',
-		'TA_MONTH'                    => 'Month',
-		'TA_YEAR'                     => 'Year',
-		'TA_DECADE'                   => 'Decade',
+		// Set the plurals - <key> => 'plural string' where <key> is the unit count, such as number of days
+		'TA_SECOND'                   => [0 => 'seconds', 1 => 'second', 2 => 'seconds', 3 => 'seconds', 4 => 'seconds',],
+		'TA_MINUTE'                   => [0 => 'minutes', 1 => 'minute', 2 => 'minutes', 3 => 'minutes', 4 => 'minutes',],
+		'TA_HOUR'                     => [0 => 'hours', 1 => 'hour', 2 => 'hours', 3 => 'hours', 4 => 'hours',],
+		'TA_DAY'                      => [0 => 'days', 1 => 'day', 2 => 'days', 3 => 'days', 4 => 'days',],
+		'TA_WEEK'                     => [0 => 'weeks', 1 => 'week', 2 => 'weeks', 3 => 'weeks', 4 => 'weeks',],
+		'TA_MONTH'                    => [0 => 'months', 1 => 'month', 2 => 'months', 3 => 'months', 4 => 'months',],
+		'TA_YEAR'                     => [0 => 'Years', 1 => 'Year', 2 => 'Years', 3 => 'Years', 4 => 'Years',],
+		'TA_DECADE'                   => [0 => 'decades', 1 => 'decade', 2 => 'decades', 3 => 'decades', 4 => 'decades',],
+		'TA_AGO'                      => 'ago',
 		'TA_OFF'                      => 'Off',
-		'TA_SHORT'                    => 'Short (1 Year Ago)',
-		'TA_MEDIUM'                   => 'Medium (1 Year 2 Months Ago)',
-		'TA_FULL'                     => 'Full (1 Year 2 Months 3 Days Ago)',
+		'TA_SHORT'                    => 'Short (1 year ago)',
+		'TA_MEDIUM'                   => 'Medium (1 year 2 months ago)',
+		'TA_FULL'                     => 'Full (1 year 2 months 3 days ago)',
 		// general settings
 		'TA_GENERAL_SETTINGS'         => 'General Settings',
 		'TA_GENERAL_SETTINGS_EXPLAIN' => 'Configure TimeAgo settings',
@@ -58,7 +57,7 @@ $lang = array_merge(
 		'TA_VIEWTOPIC_EXPLAIN'        => 'Applies TimeAgo in each post',
 		'TA_EXTENDED'                 => 'Extend',
 		'TA_EXTENDED_EXPLAIN'         => 'Add the native phpBB timestamp to the end of TimeAgo.',
-		'TA_EXTENDED_EXAMPLE'         => '(E.g. 9 Hours Ago (Sat Aug 08, 2015 11:57 am))',
+		'TA_EXTENDED_EXAMPLE'         => '(E.g. 9 hours ago (Sat Aug 08, 2015 11:57 am))',
 		'TA_DETAIL'                   => 'Detail Level',
 	]
 );

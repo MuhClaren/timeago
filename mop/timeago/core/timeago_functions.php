@@ -52,52 +52,83 @@ class timeago_functions
 		$this->db       = $db;
 		$this->template = $template;
 		$this->user     = $user;
+		$this->user->add_lang_ext('mop/timeago', 'timeago_acp');
+
 	}
 
 	/**
 	 * Timeago - Function
 	 *
 	 * Use PHP to generate the time ago string from Unix Epoch timestamp.
-	 * Adapted from https://css-tricks.com/snippets/php/time-ago-function/
 	 *
-	 * @param integer $tm
-	 * @param integer $rcs
+	 * @param integer $timestamp
+	 * @param integer $recursion
 	 *
 	 * @return string
 	 */
-	public function time_ago($tm, $rcs = 0)
+	public function time_ago($timestamp, $recursion = 0)
 	{
-		$this->user->add_lang_ext('mop/timeago', 'timeago_acp');
+		// total count for each period type, per iteration
+		$units = 0;
+		// current server epoch time
+		$current_time = time();
+		// our working value available to 'spend' on period types
+		$difference = ($current_time - $timestamp);
+		// 'price' of each period type
+		$length = [1, 60, 3600, 86400, 604800, 2630880, 31570560, 315705600];
 
-		$cur_tm = time();
-		$dif    = ($cur_tm - $tm);
-		$pds    = [$this->user->lang('TA_SECOND'), $this->user->lang('TA_MINUTE'), $this->user->lang('TA_HOUR'), $this->user->lang('TA_DAY'), $this->user->lang('TA_WEEK'), $this->user->lang('TA_MONTH'), $this->user->lang('TA_YEAR'), $this->user->lang('TA_DECADE')];
-		$lngh   = [1, 60, 3600, 86400, 604800, 2630880, 31570560, 315705600];
+		/**
+		 * Let's get our TimeAgo values using a loop.
+		 *
+		 * Expression 1: Set the initial pointer to ensure we start in the proper place. For
+		 * example, we don't want to begin the loop by calculating how many years we have until we
+		 * know how many decades we have first, and adjust our remaining working time accordingly.
+		 *
+		 * Expression 2: Check to make sure that we still have period types that can be 'bought',
+		 * and that we have enough working time to 'buy' more units for said period type.
+		 *
+		 * Expression 3: At the end of each loop iteration, we must decrement our pointer position by one
+		 * period type to ensure the next pass begins in the proper position. We did this with expression 1
+		 * but remember that the first expression is a once-only evaluation which occurs at the start of the
+		 * loop. So we use expression 3 to continue that required job.
+		 *
+		 */
+		for ($position = (count($length) - 1); ($position >= 0) && (($units = $difference / $length[$position]) <= 1); $position--);
 
-		for ($v = (count($lngh) - 1); ($v >= 0) && (($no = $dif / $lngh[$v]) <= 1); $v--);
+			// check position
+			if ($position < 0)
+			{
+				$position = 0;
+			}
 
-		if ($v < 0)
+		// determine if we have enough working time to 'buy' more of this period type
+		$_tm = ($current_time - ($difference % $length[$position]));
+
+		// clean up the float
+		$units = floor($units);
+
+		// define our period types language variables, and attach the unit count for each (used to evaluate plural conditions)
+		$periods = [
+			$this->user->lang('TA_SECOND', $units),
+			$this->user->lang('TA_MINUTE', $units),
+			$this->user->lang('TA_HOUR', $units),
+			$this->user->lang('TA_DAY', $units),
+			$this->user->lang('TA_WEEK', $units),
+			$this->user->lang('TA_MONTH', $units),
+			$this->user->lang('TA_YEAR', $units),
+			$this->user->lang('TA_DECADE', $units),
+		];
+
+		// build the timeago output
+		$timeago = sprintf('%d %s ', $units, $periods[$position]);
+
+		// are there still more levels of recursion available? are there more period types left? do we have enough remaining working time to 'buy' more units? If true, repeat loop.
+		if (($recursion > 1) && ($position >= 1) && (($current_time - $_tm) > 0))
 		{
-			$v = 0;
+			$timeago .= $this->time_ago($_tm, --$recursion);
 		}
 
-		$_tm = ($cur_tm - ($dif % $lngh[$v]));
-
-		$no = floor($no);
-
-		if ($no <> 1)
-		{
-			$pds[$v] .= $this->user->lang('TA_PLURAL_CHARS');
-		}
-
-		$x = sprintf('%d %s ', $no, $pds[$v]);
-
-		if (($rcs > 1) && ($v >= 1) && (($cur_tm - $_tm) > 0))
-		{
-			$x .= $this->time_ago($_tm, --$rcs);
-		}
-
-		return $x;
+		return $timeago;
 	}
 
 	/**
@@ -125,7 +156,7 @@ class timeago_functions
 				// native phpbb timestamp value assigned to a new template var, used with tooltip
 				'LAST_POST_TIME_ORIG' => $this->user->format_date($row['forum_last_post_time']),
 				// overwrite the the native phpBB timestamp with timeago timestamps
-				'LAST_POST_TIME'      => (!empty($this->config['ta_cat'])) ? $this->time_ago($row['forum_last_post_time'], $detail).' ago'.$extend : $this->user->format_date($row['forum_last_post_time']),
+				'LAST_POST_TIME'      => (!empty($this->config['ta_cat'])) ? $this->time_ago($row['forum_last_post_time'], $detail).' '.$this->user->lang('TA_AGO').$extend : $this->user->format_date($row['forum_last_post_time']),
 			]
 		);
 
@@ -160,7 +191,7 @@ class timeago_functions
 				'LAST_POST_TIME_ORIG'  => $this->user->format_date($row['topic_last_post_time']),
 				// overwrite the the native phpBB timestamp with timeago timestamps
 				'FIRST_POST_TIME'      => (!empty($this->config['ta_viewforum'])) ? $this->time_ago($row['topic_time'], $detail).' ago'.$fp_extend : $this->user->format_date($row['topic_time']),
-				'LAST_POST_TIME'       => (!empty($this->config['ta_viewforum'])) ? $this->time_ago($row['topic_last_post_time'], $detail).' ago'.$lp_extend : $this->user->format_date($row['topic_last_post_time']),
+				'LAST_POST_TIME'       => (!empty($this->config['ta_viewforum'])) ? $this->time_ago($row['topic_last_post_time'], $detail).' '.$this->user->lang('TA_AGO').$lp_extend : $this->user->format_date($row['topic_last_post_time']),
 
 			]
 		);
@@ -193,7 +224,7 @@ class timeago_functions
 				// native phpbb post timestamp value assigned to a new template var, used with tooltip
 				'POST_DATE_ORIG' => $this->user->format_date($row['post_time']),
 				// overwrite the the native phpBB timestamp variable with timeago
-				'POST_DATE'      => (!empty($this->config['ta_viewtopic'])) ? $this->time_ago($row['post_time'], $detail).' ago'.$extend : $this->user->format_date($row['post_time']),
+				'POST_DATE'      => (!empty($this->config['ta_viewtopic'])) ? $this->time_ago($row['post_time'], $detail).' '.$this->user->lang('TA_AGO').$extend : $this->user->format_date($row['post_time']),
 			]
 		);
 
