@@ -4,16 +4,15 @@
  *
  * This file contains the (Dutch - NL) language definitions for
  * the labels used in the ACP extensions tab. Translation provided by
- * Svennson <https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=187939>
+ * SvennD
  *
  * PHP Version 5.4
  *
- * @category    PHP
- * @package     timeago
- * @author      MuhClaren
- * @copyright   2015 (c) MOP
- * @license     GNU General Public License v2
- * @translation SvennD
+ * @category  PHP
+ * @package   timeago
+ * @author    MuhClaren
+ * @copyright 2015 (c) MOP
+ * @license   GNU General Public License v2
  */
 
 /**
@@ -23,29 +22,27 @@ if (defined('IN_PHPBB') === FALSE)
 {
 	exit;
 }
-
 if (empty($lang) || is_array($lang) === FALSE)
 {
 	$lang = [];
 }
-
 $lang = array_merge(
 	$lang,
 	[
-		// Set the plurals - <key> => 'plural string' where <key> is the unit count, such as number of days
+		// this is a belgium nl translation (http://taaladvies.net/taal/advies/vraag/511/)
 		'TA_SECOND'                   => [0 => 'seconden', 1 => 'seconde', 2 => 'seconden', 3 => 'seconden', 4 => 'seconden',],
-		'TA_MINUTE'                   => [0 => 'minuuten', 1 => 'minuut', 2 => 'minuuten', 3 => 'minuuten', 4 => 'minuuten',],
-		'TA_HOUR'                     => [0 => 'uuren', 1 => 'uur', 2 => 'uuren', 3 => 'uuren', 4 => 'uuren',],
+		'TA_MINUTE'                   => [0 => 'minuten', 1 => 'minuut', 2 => 'minuten', 3 => 'minuten', 4 => 'minuten',],
+		'TA_HOUR'                     => [0 => 'uren', 1 => 'uur', 2 => 'uur', 3 => 'uur', 4 => 'uur',],
 		'TA_DAY'                      => [0 => 'dagen', 1 => 'dag', 2 => 'dagen', 3 => 'dagen', 4 => 'dagen',],
-		'TA_WEEK'                     => [0 => 'weeks', 1 => 'week', 2 => 'weeks', 3 => 'weeks', 4 => 'weeks',],
-		'TA_MONTH'                    => [0 => 'maanden', 1 => 'maand', 2 => 'maanden', 3 => 'maanden', 4 => 'maanden',],
-		'TA_YEAR'                     => [0 => 'jaaren', 1 => 'jaar', 2 => 'jaaren', 3 => 'jaaren', 4 => 'jaaren',],
-		'TA_DECADE'                   => [0 => 'decenniumen', 1 => 'decennium', 2 => 'decenniumen', 3 => 'decenniumen', 4 => 'decenniumen',],
+		'TA_WEEK'                     => [0 => 'weken', 1 => 'week', 2 => 'weken', 3 => 'weken', 4 => 'weken',],
+		'TA_MONTH'                    => [0 => 'maanden', 1 => 'maand', 2 => 'maand', 3 => 'maand', 4 => 'maand',],
+		'TA_YEAR'                     => [0 => 'jaren', 1 => 'jaar', 2 => 'jaar', 3 => 'jaar', 4 => 'jaar',],
+		'TA_DECADE'                   => [0 => 'decennia', 1 => 'decennium', 2 => 'decennia', 3 => 'decennia', 4 => 'decennia',],
 		'TA_AGO'                      => 'geleden',
 		'TA_OFF'                      => 'Uit',
 		'TA_SHORT'                    => 'Kort (1 jaar geleden)',
-		'TA_MEDIUM'                   => 'Gemiddeld (1 jaren 2 maanden geleden)',
-		'TA_FULL'                     => 'Volledig (1 jaar 2 maanden 3 dagen geleden)',
+		'TA_MEDIUM'                   => 'Gemiddeld (1 jaar 2 maand geleden)',
+		'TA_FULL'                     => 'Volledig (1 jaar 2 maand 3 dagen geleden)',
 		// general settings
 		'TA_GENERAL_SETTINGS'         => 'Algemene Instellingen',
 		'TA_GENERAL_SETTINGS_EXPLAIN' => 'Configurerbare TimeAgo instellingen',
@@ -58,7 +55,7 @@ $lang = array_merge(
 		'TA_VIEWTOPIC_EXPLAIN'        => 'Activeerd TimeAgo in elke post',
 		'TA_EXTENDED'                 => 'Uitgebreid',
 		'TA_EXTENDED_EXPLAIN'         => 'Voeg de standaard phpBB tijdnotatie toe aan het eind van TimeAgo.',
-		'TA_EXTENDED_EXAMPLE'         => '(BV. 9 uren geleden (Sat Aug 08, 2015 11:57 am))',
+		'TA_EXTENDED_EXAMPLE'         => '(BV. 9 uur geleden (12 Aug 2015 08:07))',
 		'TA_DETAIL'                   => 'Gedetaileerd niveau',
 	]
 );
