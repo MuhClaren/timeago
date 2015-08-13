@@ -13,7 +13,7 @@
  * @copyright 2015 (c) MOP
  * @license   GNU General Public License v2
  * 
- * Translated By : Bassel Taha Alhitary - www.alhitary.net
+ * Translated By : Bassel Taha Alhitary - www.alhitary.net.
  */
 
 /**
