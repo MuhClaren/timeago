@@ -9,10 +9,11 @@
     PHP 5.4, phpBB 3.1.x
 
     Language Support: 
-    EN_GB, EN, NL. Language contributions are welcome.
+    AR, EN, EN_US, NL. Language contributions are welcome.
     
     Translation Credits: 
-    Dutch NL - Svennson <https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=187939>
+    Arabic AR - Bassel Taha Alhitary <http://www.alhitary.net>
+    Dutch NL  - Svennson <https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=187939>
 
     Features:
     * Compatible with all styles that use the native phpBB timestamp template tags
