@@ -95,11 +95,11 @@ class timeago_functions
 		 */
 		for ($position = (count($length) - 1); ($position >= 0) && (($units = $difference / $length[$position]) <= 1); $position--);
 
-			// check position
-			if ($position < 0)
-			{
-				$position = 0;
-			}
+		// check position
+		if ($position < 0)
+		{
+			$position = 0;
+		}
 
 		// determine if we have enough working time to 'buy' more of this period type
 		$_tm = ($current_time - ($difference % $length[$position]));
@@ -157,6 +157,7 @@ class timeago_functions
 				'LAST_POST_TIME_ORIG' => $this->user->format_date($row['forum_last_post_time']),
 				// overwrite the the native phpBB timestamp with timeago timestamps
 				'LAST_POST_TIME'      => (!empty($this->config['ta_cat'])) ? $this->time_ago($row['forum_last_post_time'], $detail).' '.$this->user->lang('TA_AGO').$extend : $this->user->format_date($row['forum_last_post_time']),
+
 			]
 		);
 
