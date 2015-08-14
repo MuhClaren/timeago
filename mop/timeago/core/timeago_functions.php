@@ -190,7 +190,7 @@ class timeago_functions
 				'FIRST_POST_TIME_ORIG' => $this->user->format_date($row['topic_time']),
 				'LAST_POST_TIME_ORIG'  => $this->user->format_date($row['topic_last_post_time']),
 				// overwrite the the native phpBB timestamp with timeago timestamps
-				'FIRST_POST_TIME'      => (!empty($this->config['ta_viewforum'])) ? $this->time_ago($row['topic_time'], $detail).' ago'.$fp_extend : $this->user->format_date($row['topic_time']),
+				'FIRST_POST_TIME'      => (!empty($this->config['ta_viewforum'])) ? $this->time_ago($row['topic_time'], $detail).' '.$this->user->lang('TA_AGO').$fp_extend : $this->user->format_date($row['topic_time']),
 				'LAST_POST_TIME'       => (!empty($this->config['ta_viewforum'])) ? $this->time_ago($row['topic_last_post_time'], $detail).' '.$this->user->lang('TA_AGO').$lp_extend : $this->user->format_date($row['topic_last_post_time']),
 
 			]
