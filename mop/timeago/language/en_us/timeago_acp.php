@@ -50,7 +50,7 @@ $lang = array_merge(
 		'TA_GENERAL_SETTINGS_EXPLAIN' => 'Configure TimeAgo settings',
 		'TA_DISPLAY_SETTINGS'         => 'TimeAgo Format Options',
 		'TA_CAT'                      => 'index.php',
-		'TA_CAT_EXPLAIN'              => 'Applies TimeAgo on the Category Forums List for “Last Post”',
+		'TA_CAT_EXPLAIN'              => 'Applies TimeAgo on the Category Forums List for "Last Post"',
 		'TA_VIEWFORUM'                => 'viewforum.php',
 		'TA_VIEWFORUM_EXPLAIN'        => 'Applies TimeAgo on the list of topics in forum view',
 		'TA_VIEWTOPIC'                => 'viewtopic.php',
@@ -59,5 +59,9 @@ $lang = array_merge(
 		'TA_EXTENDED_EXPLAIN'         => 'Add the native phpBB timestamp to the end of TimeAgo.',
 		'TA_EXTENDED_EXAMPLE'         => '(E.g. 9 hours ago (Sat Aug 08, 2015 11:57 am))',
 		'TA_DETAIL'                   => 'Detail Level',
+		'TA_TIMER_SETTINGS'           => 'Timer Settings',
+		'TA_TIMER'                    => 'Timer',
+		'TA_TIMER_EXPLAIN'            => 'Duration of time (days) from the post time that TimeAgo should be active. Example: setting this to 2 will cause TimeAgo to revert to the normal phpBB date-time format after 2 days. If no value is set TimeAgo will never revert. Valid input: 1 - 999, 0 or blank disables this option',
+		'TA_DAYS'                     => 'Days',
 	]
 );

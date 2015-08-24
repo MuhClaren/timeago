@@ -89,6 +89,7 @@ class timeago_module
 					$this->config->set('ta_viewforum_extended', $this->request->variable('ta_viewforum_extended', 0));
 					$this->config->set('ta_viewtopic', $this->request->variable('ta_viewtopic', 1));
 					$this->config->set('ta_viewtopic_extended', $this->request->variable('ta_viewtopic_extended', 0));
+					$this->config->set('ta_timer', $this->request->variable('ta_timer', 0));
 
 					trigger_error($this->user->lang('CONFIG_UPDATED').adm_back_link($this->u_action));
 
@@ -98,12 +99,13 @@ class timeago_module
 				$this->template->assign_vars(
 					[
 						'TA_FORUM_ROOT'         => $this->phpbb_root_path,
-						'TA_CAT'                => (!empty($this->config['ta_cat'])) ? $this->config['ta_cat'] : 0,
-						'TA_CAT_EXTENDED'       => (!empty($this->config['ta_cat_extended'])) ? TRUE : FALSE,
-						'TA_VIEWFORUM'          => (!empty($this->config['ta_viewforum'])) ? $this->config['ta_viewforum'] : 0,
-						'TA_VIEWFORUM_EXTENDED' => (!empty($this->config['ta_viewforum_extended'])) ? TRUE : FALSE,
-						'TA_VIEWTOPIC'          => (!empty($this->config['ta_viewtopic'])) ? $this->config['ta_viewtopic'] : 0,
-						'TA_VIEWTOPIC_EXTENDED' => (!empty($this->config['ta_viewtopic_extended'])) ? TRUE : FALSE,
+						'TA_CAT'                => !empty($this->config['ta_cat']) ? $this->config['ta_cat'] : 0,
+						'TA_CAT_EXTENDED'       => !empty($this->config['ta_cat_extended']) ? TRUE : FALSE,
+						'TA_VIEWFORUM'          => !empty($this->config['ta_viewforum']) ? $this->config['ta_viewforum'] : 0,
+						'TA_VIEWFORUM_EXTENDED' => !empty($this->config['ta_viewforum_extended']) ? TRUE : FALSE,
+						'TA_VIEWTOPIC'          => !empty($this->config['ta_viewtopic']) ? $this->config['ta_viewtopic'] : 0,
+						'TA_VIEWTOPIC_EXTENDED' => !empty($this->config['ta_viewtopic_extended']) ? TRUE : FALSE,
+						'TA_TIMER'              => !empty($this->config['ta_timer']) ? $this->config['ta_timer'] : 0,
 						'U_ACTION'              => $this->u_action,
 					]
 				);

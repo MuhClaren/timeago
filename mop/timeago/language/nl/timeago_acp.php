@@ -48,7 +48,7 @@ $lang = array_merge(
 		'TA_GENERAL_SETTINGS_EXPLAIN' => 'Configurerbare TimeAgo instellingen',
 		'TA_DISPLAY_SETTINGS'         => 'TimeAgo Formaat Opties',
 		'TA_CAT'                      => 'index.php',
-		'TA_CAT_EXPLAIN'              => 'Activeerd TimeAgo op de category forum lijst voor “Laatste Post”',
+		'TA_CAT_EXPLAIN'              => 'Activeerd TimeAgo op de category forum lijst voor "Laatste Post"',
 		'TA_VIEWFORUM'                => 'viewforum.php',
 		'TA_VIEWFORUM_EXPLAIN'        => 'Activeerd TimeAgo op de lijst van topics in forum view',
 		'TA_VIEWTOPIC'                => 'viewtopic.php',
@@ -57,5 +57,9 @@ $lang = array_merge(
 		'TA_EXTENDED_EXPLAIN'         => 'Voeg de standaard phpBB tijdnotatie toe aan het eind van TimeAgo.',
 		'TA_EXTENDED_EXAMPLE'         => '(BV. 9 uur geleden (12 Aug 2015 08:07))',
 		'TA_DETAIL'                   => 'Gedetaileerd niveau',
+		'TA_TIMER_SETTINGS'           => 'Timer Settings',
+		'TA_TIMER'                    => 'Timer',
+		'TA_TIMER_EXPLAIN'            => 'Duration of time (days) from the post time that TimeAgo should be active. Example: setting this to 2 will cause TimeAgo to revert to the normal phpBB date-time format after 2 days. If no value is set TimeAgo will never revert. Valid input: 1 - 999, 0 or blank disables this option',
+		'TA_DAYS'                     => 'Days',
 	]
 );

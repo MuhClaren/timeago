@@ -60,5 +60,9 @@ $lang = array_merge(
 		'TA_EXTENDED_EXPLAIN'         => 'Aggiungi phpBB timestamp nativo dopo TimeAgo.',
 		'TA_EXTENDED_EXAMPLE'         => '(Es. 9 Ore fa (Sat Aug 08, 2015 11:57 am))',
 		'TA_DETAIL'                   => 'Dettagli',
+		'TA_TIMER_SETTINGS'           => 'Timer Settings',
+		'TA_TIMER'                    => 'Timer',
+		'TA_TIMER_EXPLAIN'            => 'Duration of time (days) from the post time that TimeAgo should be active. Example: setting this to 2 will cause TimeAgo to revert to the normal phpBB date-time format after 2 days. If no value is set TimeAgo will never revert. Valid input: 1 - 999, 0 or blank disables this option',
+		'TA_DAYS'                     => 'Days',
 	]
 );
