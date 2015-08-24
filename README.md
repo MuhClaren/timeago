@@ -19,12 +19,14 @@
 
     Features:
     * Compatible with all styles that use the native phpBB timestamp template tags
-    *100% PHP, no Javascript or template editing necessary
-    *Based on server time, no more issue with incorrect guest timezones
-    *Three (3) adjustable levels of detail
-    *Support for times from Seconds through Decades
-    *Configurable display options for Index.php, viewforum.php, viewtopic.php
-    *"Extended" detail option appends phpBB native timestamp to the end of the TimeAgo output: 8 Months 1 Week Ago (January 1, 2015)
+    * Configurable timer to revert TimeAgo to native date format after n days
+    * Automatically adapts to varying language constructs (word placement)
+    * 100% PHP, no Javascript or template editing necessary
+    * Based on server time, no more issue with incorrect guest timezones
+    * Three (3) adjustable levels of detail
+    * Support for times from Seconds through Decades
+    * Configurable display options for Index.php, viewforum.php, viewtopic.php
+    * "Extended" detail option appends phpBB native timestamp to the end of the TimeAgo output: 8 Months 1 Week Ago (January 1, 2015)
 
      Quickstart: 
      Install: Copy folder "mop" to your /ext directory. (final path looks like this: /ext/mop/timeago).
