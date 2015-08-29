@@ -38,7 +38,7 @@ $lang = array_merge(
 		'TA_DAY'                      => [0 => 'días', 1 => 'día', 2 => 'días', 3 => 'días', 4 => 'días',],
 		'TA_WEEK'                     => [0 => 'semanas', 1 => 'semana', 2 => 'semanas', 3 => 'semanas', 4 => 'semanas',],
 		'TA_MONTH'                    => [0 => 'meses', 1 => 'mes', 2 => 'meses', 3 => 'meses', 4 => 'meses',],
-		'TA_YEAR'                     => [0 => 'years', 1 => 'year', 2 => 'years', 3 => 'years', 4 => 'years',],
+		'TA_YEAR'                     => [0 => 'años', 1 => 'año', 2 => 'años', 3 => 'años', 4 => 'años',],
 		'TA_DECADE'                   => [0 => 'decadas', 1 => 'decada', 2 => 'decadas', 3 => 'decadas', 4 => 'decadas',],
 		'TA_AGO'                      => 'Hace',
 		'TA_OFF'                      => 'Apagado',
@@ -59,9 +59,9 @@ $lang = array_merge(
 		'TA_EXTENDED_EXPLAIN'         => 'Añadir la marca de tiempo nativa de phpBB al final de TimeAgo.',
 		'TA_EXTENDED_EXAMPLE'         => '(Por ejemplo, hace 9 horas (Sab Ago 08, 2015 11:57 am))',
 		'TA_DETAIL'                   => 'Nivel de Detalle',
-		'TA_TIMER_SETTINGS'           => 'Timer Settings',
-		'TA_TIMER'                    => 'Timer',
-		'TA_TIMER_EXPLAIN'            => 'Duration of time (days) from the post time that TimeAgo should be active. Example: setting this to 2 will cause TimeAgo to revert to the normal phpBB date-time format after 2 days. If no value is set TimeAgo will never revert. Valid input: 1 - 999, 0 or blank disables this option',
-		'TA_DAYS'                     => 'Days',
+		'TA_TIMER_SETTINGS'           => 'Ajustes de tiempo',
+		'TA_TIMER'                    => 'Tiempo',
+		'TA_TIMER_EXPLAIN'            => 'Duración de tiempo (días) desde que la fecha del mensaje que TimeAgo debe estar activo. Por ejemplo: ajustar esto a 2 causará que TimeAgo vuelva al formato de fecha y hora normal de phpBB después de 2 días. Si ningún valor se establece, TimeAgo nunca volverá. La entrada válida: 1 - 999, 0 o en blanco desactiva esta opción.',
+		'TA_DAYS'                     => 'Días',
 	]
 );
