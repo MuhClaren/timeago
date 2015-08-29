@@ -61,9 +61,9 @@ $lang = array_merge(
 		'TA_EXTENDED_EXPLAIN'         => 'إضافة صيغة التوقيت الإفتراضي للمنتدى بعد التوقيت الماضي.',
 		'TA_EXTENDED_EXAMPLE'         => '( مثال : مُنذ 9 ساعات ( السبت أغسطس 08 , 2015 11:57 ص ) )',
 		'TA_DETAIL'                   => 'مستوى التفاصيل',
-		'TA_TIMER_SETTINGS'           => 'Timer Settings',
-		'TA_TIMER'                    => 'Timer',
-		'TA_TIMER_EXPLAIN'            => 'Duration of time (days) from the post time that TimeAgo should be active. Example: setting this to 2 will cause TimeAgo to revert to the normal phpBB date-time format after 2 days. If no value is set TimeAgo will never revert. Valid input: 1 - 999, 0 or blank disables this option',
-		'TA_DAYS'                     => 'Days',
+		'TA_TIMER_SETTINGS'           => 'إعدادات المؤقت',
+		'TA_TIMER'                    => 'المؤقت ',
+		'TA_TIMER_EXPLAIN'            => 'عدد الأيام لتفعيل هذه الإضافة على توقيت المُشاركة. مثال : لو ذكرت عدد 2 أيام , فسوف يتحول التوقيت الماضي إلى التوقيت الإفتراضي للمنتدى بعد يومين من إضافة المُشاركة. القيمة الصحيحة من 1 إلى 999. القيمة صفر أو تركه فارغاً يعني تعطيل هذا الخيار والبقاء على التوقيت الماضي للمُشاركات بصورة دائمة.',
+		'TA_DAYS'                     => 'أيام',
 	]
 );
