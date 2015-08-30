@@ -243,6 +243,8 @@ class timeago_functions
 
 		switch ($language)
 		{
+			// German
+			case 'de':
 			// Español
 			case 'es':
 				$output = !empty($timeago) ? $ago.' '.$timeago.' '.$extend : NULL;
