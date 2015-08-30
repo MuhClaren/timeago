@@ -1,12 +1,10 @@
 # timeago
-    Extension Name: TimeAgo
-    Author: MuhClaren
 
     Extension Description: 
     This extension changes the phpBB native timestamps to a Time Ago format. Example: (Before)  January 1, 1984 (After)  8 Months, 2 Weeks, 3 Days Ago.
 
     Requirements: 
-    PHP 5.4, phpBB 3.1.x
+    PHP 5.3, phpBB 3.1.x
 
     Language Support: 
     AR, DE, EN, EN_US, ES, IT, NL. Language contributions are welcome.
