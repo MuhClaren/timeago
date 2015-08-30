@@ -93,7 +93,7 @@ class timeago_functions
 		 * loop. So we use expression 3 to continue that required job.
 		 *
 		 */
-		for ($position = (count($length) - 1); ($position >= 0) && (($units = $difference / $length[$position]) <= 1); $position--);
+		for ($position = (count($length) - 1); ($position >= 0) && (($units = $difference / $length[$position]) <= 1); $position--) ;
 
 		// check position
 		if ($position < 0)
@@ -149,20 +149,24 @@ class timeago_functions
 		 * @var string  $extend  optional string containing native phpBB (date-time) to append to the timeago output
 		 * @var string  $timeago the meat and potatoes - the processed timeago substring ready for output build
 		 */
-		$detail    = !empty($this->config['ta_cat']) ? $this->config['ta_cat'] : '';
-		$extend    = !empty($this->config['ta_cat_extended']) ? ' ('.$this->user->format_date($row['forum_last_post_time']).')' : '';
-		$timeago   = !empty($this->config['ta_cat']) ? $this->time_ago($row['forum_last_post_time'], $detail) : '';
-		$ta_output = !empty($timeago) ? $this->build_ta_output($timeago, $extend) : $this->user->format_date($row['forum_last_post_time']);
+		// if posts exist
+		if (!empty($row['forum_last_post_time']))
+		{
+			$detail    = !empty($this->config['ta_cat']) ? $this->config['ta_cat'] : '';
+			$extend    = !empty($this->config['ta_cat_extended']) ? ' ('.$this->user->format_date($row['forum_last_post_time']).')' : '';
+			$timeago   = !empty($this->config['ta_cat']) ? $this->time_ago($row['forum_last_post_time'], $detail) : '';
+			$ta_output = !empty($timeago) ? $this->build_ta_output($timeago, $extend) : $this->user->format_date($row['forum_last_post_time']);
 
-		$block = array_merge(
-			$block,
-			[
-				'TIMEAGO'             => !empty($this->config['ta_active']) ? TRUE : FALSE,
-				'LAST_POST_TIME_ORIG' => $this->user->format_date($row['forum_last_post_time']),
-				// if ta_timer == true deactivate timeago, otherwise use timeago
-				'LAST_POST_TIME'      => $this->ta_timer($row['forum_last_post_time']) == TRUE ? $this->user->format_date($row['forum_last_post_time']) : $ta_output,
-			]
-		);
+			$block = array_merge(
+				$block,
+				[
+					'TIMEAGO'             => !empty($this->config['ta_active']) ? TRUE : FALSE,
+					'LAST_POST_TIME_ORIG' => $this->user->format_date($row['forum_last_post_time']),
+					// if ta_timer == true deactivate timeago, otherwise use timeago
+					'LAST_POST_TIME'      => $this->ta_timer($row['forum_last_post_time']) == TRUE ? $this->user->format_date($row['forum_last_post_time']) : $ta_output,
+				]
+			);
+		}
 
 		return $block;
 	}
