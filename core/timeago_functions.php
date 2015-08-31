@@ -87,7 +87,11 @@
 			 *
 			 */
 
-			for($position = sizeof($length)-1; ($position >= 0)&&(($units = $difference/$length[$position])<=1); $position--); if($position < 0) $position = 0; $_tm = $current_time-($difference%$length[$position]);
+			for($position = sizeof($length)-1; ($position >= 0)&&(($units = $difference/$length[$position])<=1); $position--);
+
+			if($position < 0) $position = 0;
+
+			$_tm = $current_time-($difference%$length[$position]);
 
 				// clean up the float
 				$units = floor($units);
@@ -259,8 +263,8 @@
 		{
 			if (!empty($this->config['ta_timer']))
 			{
-				$timer_value = ((int)$then + (86400 * (int)$this->config['ta_timer']));
-				$deactivate  = (bool)(time() > $timer_value);
+				$timer_value = ((int) $then + (86400 * (int) $this->config['ta_timer']));
+				$deactivate  = (bool) (time() > $timer_value);
 			}
 			else
 			{
