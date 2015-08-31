@@ -70,54 +70,45 @@
 			$length = [1, 60, 3600, 86400, 604800, 2630880, 31570560, 315705600];
 			// define units
 			$units = 0;
-			/*
-			 * Let's get our TimeAgo values using a loop.
-			 *
-			 * Expression 1: Set the initial pointer to ensure we start in the proper place. For
-			 * example, we don't want to begin the loop by calculating how many years we have until we
-			 * know how many decades we have first, and adjust our remaining working time accordingly.
-			 *
-			 * Expression 2: Check to make sure that we still have period types that can be 'bought',
-			 * and that we have enough working time to 'buy' more units for said period type.
-			 *
-			 * Expression 3: At the end of each loop iteration, we must decrement our pointer position by one
-			 * period type to ensure the next pass begins in the proper position. We did this with expression 1
-			 * but remember that the first expression is a once-only evaluation which occurs at the start of the
-			 * loop. So we use expression 3 to continue that required job.
-			 *
-			 */
 
-			for ($position = sizeof($length)-1; ($position >= 0)&&(($units = $difference/$length[$position])<=1); $position--);
+			for ($position = sizeof($length) - 1; ($position >= 0) && (($units = $difference / $length[$position]) <= 1); $position--)
+			{
 
-			if ($position < 0) $position = 0;
+			};
 
-			$_tm = $current_time-($difference%$length[$position]);
+			if ($position < 0)
+			{
+				$position = 0;
+			}
 
-				// clean up the float
-				$units = floor($units);
+			$_tm = $current_time - ($difference % $length[$position]);
 
-				// period types
-				$periods = [
-					$this->user->lang('TA_SECOND', $units),
-					$this->user->lang('TA_MINUTE', $units),
-					$this->user->lang('TA_HOUR', $units),
-					$this->user->lang('TA_DAY', $units),
-					$this->user->lang('TA_WEEK', $units),
-					$this->user->lang('TA_MONTH', $units),
-					$this->user->lang('TA_YEAR', $units),
-					$this->user->lang('TA_DECADE', $units),
-				];
+			// clean up the float
+			$units = floor($units);
 
-				// build the timeago output
-				$timeago = sprintf('%d %s ', $units, $periods[$position]);
+			// period types
+			$periods = [
+				$this->user->lang('TA_SECOND', $units),
+				$this->user->lang('TA_MINUTE', $units),
+				$this->user->lang('TA_HOUR', $units),
+				$this->user->lang('TA_DAY', $units),
+				$this->user->lang('TA_WEEK', $units),
+				$this->user->lang('TA_MONTH', $units),
+				$this->user->lang('TA_YEAR', $units),
+				$this->user->lang('TA_DECADE', $units),
+			];
 
-				// are there still more levels of recursion available? are there more period types left? do we have enough remaining working time to 'buy' more units? If true, repeat loop.
-				if (($recursion > 1) && ($position >= 1) && (($current_time - $_tm) > 0))
-				{
-					$timeago .= $this->time_ago($_tm, --$recursion);
-				}
+			// build the timeago output
+			$timeago = sprintf('%d %s ', $units, $periods[$position]);
 
-				return $timeago;
+			// are there still more levels of recursion available? are there more period types left? do we have enough remaining working time to 'buy' more units? If true, repeat loop.
+			if (($recursion > 1) && ($position >= 1) && (($current_time - $_tm) > 0))
+			{
+				$timeago .= $this->time_ago($_tm, --$recursion);
+			}
+
+			return $timeago;
+
 		}
 
 		/**
