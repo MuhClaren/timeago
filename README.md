@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/MuhClaren/timeago.svg?branch=master)](https://travis-ci.org/MuhClaren/timeago)
+[![Coverage Status](https://coveralls.io/repos/MuhClaren/timeago/badge.svg?branch=master&service=github)](https://coveralls.io/github/MuhClaren/timeago?branch=master)
 
 TimeAgo - A phpBB 3.1 extension
 -------------------------------
