@@ -2,7 +2,7 @@
 
 TimeAgo - A phpBB 3.1 extension
 -------------------------------
-**Extension Version:** 1.3.1.  
+**Extension Version:** 1.3.1b    
 **Requirements:** PHP 5.3. phpBB 3.1.x  
 **Author:** MuhClaren  
 
@@ -33,7 +33,7 @@ Italian (IT): [Sakkiotto](https://www.phpbb.com/community/memberlist.php?mode=vi
  - Definable de-activation timer to display native phpBB date-time on posts older than set number of days 
 
 **Quickstart:**  
-*Install:* Copy folder "mop" to your /ext directory. (final path looks like this: /ext/mop/timeago).   
+*Install:* Extract the archive to the following folders in your extensions directory tree: /mop/timeago (final path looks like this: /ext/mop/timeago/).   
 *Enable:* ACP --> Customise --> locate TimeAgo extension in the list, click enable.  
 *Configure:* Configuration options are available from the "Extensions" tab, TimeAgo General Settings.  
 
