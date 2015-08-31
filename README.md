@@ -9,21 +9,21 @@ TimeAgo - A phpBB 3.1 extension
 **Extension Description:** This extension changes the phpBB native date-time to a Time Ago format. Example: (Before) Saturday, January 1. 1984 (After) 8 Months, 2 Weeks, 3 Days Ago.
 
 **Screenshots:**
-[TimeAgo Settings](https://www.imageforge.us/image/6OeW1)
-[Example viewforum](https://www.imageforge.us/image/12Rf)
-[Example viewforum](https://www.imageforge.us/image/1NZX)
-[Example viewtopic](https://www.imageforge.us/image/1LcW)
+[TimeAgo Settings](https://www.imageforge.us/image/6OeW1)  
+[Example viewforum](https://www.imageforge.us/image/12Rf)  
+[Example viewforum](https://www.imageforge.us/image/1NZX)  
+[Example viewtopic](https://www.imageforge.us/image/1LcW)  
 
-**Language Support:** ar, de, en, en_us, es, it, nl. Language contributions are appreciated.
+**Language Support:** ar, de, en, en_us, es, it, nl. Language contributions are appreciated.  
 
-**Translators:**
-Arabic (AR): [Alhitary](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=294346)
-German (DE): [Miri4Ever](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=1467791)
-Español (ES): Raul [ThE KuKa](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=94590)
-Dutch (NL): [Svennson](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=187939)
-Italian (IT): [Sakkiotto](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=190154)
+**Translators:**  
+Arabic (AR): [Alhitary](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=294346)  
+German (DE): [Miri4Ever](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=1467791)  
+Español (ES): Raul [ThE KuKa](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=94590)  
+Dutch (NL): [Svennson](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=187939)  
+Italian (IT): [Sakkiotto](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=190154)  
 
-**Highlights:**
+**Highlights:**  
  - Compatible with all styles that use the native phpBB timestamp template tags
  - 100% PHP, no Javascript or template editing necessary 
  - Three (3) adjustable levels of detail Support for times from Seconds through Decades 
@@ -32,12 +32,12 @@ Italian (IT): [Sakkiotto](https://www.phpbb.com/community/memberlist.php?mode=vi
  - Automatically adapts for proper word order for non-English languages
  - Definable de-activation timer to display native phpBB date-time on posts older than set number of days 
 
-**Quickstart:** 
-*Install:* Copy folder "mop" to your /ext directory. (final path looks like this: /ext/mop/timeago). 
-*Enable:* ACP --> Customise --> locate TimeAgo extension in the list, click enable. 
-*Configure:* Configuration options are available from the "Extensions" tab, TimeAgo General Settings.
+**Quickstart:**  
+*Install:* Copy folder "mop" to your /ext directory. (final path looks like this: /ext/mop/timeago).   
+*Enable:* ACP --> Customise --> locate TimeAgo extension in the list, click enable.  
+*Configure:* Configuration options are available from the "Extensions" tab, TimeAgo General Settings.  
 
-**History:** 
+**History:**   
  v1.3.1 Change Log:
 
  - [FEATURE] Timer setting to revert back to native output after *n* days
