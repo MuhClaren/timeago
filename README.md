@@ -3,9 +3,7 @@
 TimeAgo - A phpBB 3.1 extension
 -------------------------------
 **Extension Version:** 1.3.1.
-
 **Requirements:** PHP 5.3. phpBB 3.1.x
-
 **Author:** MuhClaren
 
 **Extension Description:** This extension changes the phpBB native date-time to a Time Ago format. Example: (Before) Saturday, January 1. 1984 (After) 8 Months, 2 Weeks, 3 Days Ago.
@@ -19,15 +17,10 @@ TimeAgo - A phpBB 3.1 extension
 **Language Support:** ar, de, en, en_us, es, it, nl. Language contributions are appreciated.
 
 **Translators:**
-
 Arabic (AR): [Alhitary](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=294346)
-
 German (DE): [Miri4Ever](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=1467791)
-
 Español (ES): Raul [ThE KuKa](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=94590)
-
 Dutch (NL): [Svennson](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=187939)
-
 Italian (IT): [Sakkiotto](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=190154)
 
 **Highlights:**
@@ -40,11 +33,8 @@ Italian (IT): [Sakkiotto](https://www.phpbb.com/community/memberlist.php?mode=vi
  - Definable de-activation timer to display native phpBB date-time on posts older than set number of days 
 
 **Quickstart:** 
-
 *Install:* Copy folder "mop" to your /ext directory. (final path looks like this: /ext/mop/timeago). 
-
 *Enable:* ACP --> Customise --> locate TimeAgo extension in the list, click enable. 
-
 *Configure:* Configuration options are available from the "Extensions" tab, TimeAgo General Settings.
 
 **History:** 
