@@ -87,9 +87,9 @@
 			 *
 			 */
 
-			for($position = sizeof($length)-1; ($position >= 0)&&(($units = $difference/$length[$position])<=1); $position--);
+			for ($position = sizeof($length)-1; ($position >= 0)&&(($units = $difference/$length[$position])<=1); $position--);
 
-			if($position < 0) $position = 0;
+			if ($position < 0) $position = 0;
 
 			$_tm = $current_time-($difference%$length[$position]);
 
