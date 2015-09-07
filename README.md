@@ -15,10 +15,11 @@ TimeAgo - A phpBB 3.1 extension
 [Example viewforum](https://www.imageforge.us/image/1NZX)  
 [Example viewtopic](https://www.imageforge.us/image/1LcW)  
 
-**Language Support:** ar, de, en, en_us, es, it, nl. Language contributions are appreciated.  
+**Language Support:** ar, cs, de, en, en_us, es, it, nl. Language contributions are appreciated.  
 
 **Translators:**  
 Arabic (AR): [Alhitary](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=294346)  
+Czech (CS): [R3gi](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=1407131)  
 German (DE): [Miri4Ever](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=1467791)  
 Español (ES): Raul [ThE KuKa](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=94590)  
 Dutch (NL): [Svennson](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=187939)  
