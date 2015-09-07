@@ -224,9 +224,11 @@
 
 			switch ($language)
 			{
+				// Czech
+				case 'cs':
 				// German
 				case 'de':
-					// Español
+				// Español
 				case 'es':
 					$output = !empty($timeago) ? $ago.' '.$timeago.' '.$extend : null;
 					break;
