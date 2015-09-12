@@ -142,7 +142,7 @@
 						'TIMEAGO'             => !empty($this->config['ta_active']) ? true : false,
 						'LAST_POST_TIME_ORIG' => $this->user->format_date($row['forum_last_post_time']),
 						// if ta_timer == true deactivate timeago, otherwise use timeago
-						'LAST_POST_TIME'      => $this->ta_timer($row['forum_last_post_time']) == true ? $this->user->format_date($row['forum_last_post_time']) : $ta_output,
+						'LAST_POST_TIME'      => $this->ta_timer($row['forum_last_post_time']) === true ? $this->user->format_date($row['forum_last_post_time']) : $ta_output,
 					]
 				);
 			}
@@ -175,7 +175,7 @@
 					'FIRST_POST_TIME_ORIG' => $this->user->format_date($row['topic_time']),
 					'LAST_POST_TIME_ORIG'  => $this->user->format_date($row['topic_last_post_time']),
 					'FIRST_POST_TIME'      => $this->ta_timer($row['topic_time']) == true ? $this->user->format_date($row['topic_time']) : $ta_output_fp,
-					'LAST_POST_TIME'       => $this->ta_timer($row['topic_last_post_time']) == true ? $this->user->format_date($row['topic_last_post_time']) : $ta_output_lp,
+					'LAST_POST_TIME'       => $this->ta_timer($row['topic_last_post_time']) === true ? $this->user->format_date($row['topic_last_post_time']) : $ta_output_lp,
 				]
 			);
 
@@ -202,7 +202,7 @@
 				[
 					'TIMEAGO'        => !empty($this->config['ta_active']) ? true : false,
 					'POST_DATE_ORIG' => $this->user->format_date($row['post_time']),
-					'POST_DATE'      => $this->ta_timer($row['post_time']) == true ? $this->user->format_date($row['post_time']) : $ta_output,
+					'POST_DATE'      => $this->ta_timer($row['post_time']) === true ? $this->user->format_date($row['post_time']) : $ta_output,
 				]
 			);
 
