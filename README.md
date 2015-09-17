@@ -15,7 +15,7 @@ TimeAgo - A phpBB 3.1 extension
 [Example viewforum](https://www.imageforge.us/image/1NZX)  
 [Example viewtopic](https://www.imageforge.us/image/1LcW)  
 
-**Language Support:** ar, cs, de, en, en_us, es, it, nl. Language contributions are appreciated.  
+**Language Support:** ar, cs, de, en, en_us, es, it, nl, tr. Language contributions are appreciated.  
 
 **Translators:**  
 Arabic (AR): [Alhitary](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=294346)  
@@ -24,11 +24,13 @@ German (DE): [Miri4Ever](https://www.phpbb.com/community/memberlist.php?mode=vie
 Español (ES): Raul [ThE KuKa](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=94590)  
 Dutch (NL): [Svennson](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=187939)  
 Italian (IT): [Sakkiotto](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=190154)  
+Turkish (TR): [Cycling](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=1506201)  
 
 **Highlights:**  
  - Compatible with all styles that use the native phpBB timestamp template tags
  - 100% PHP, no Javascript or template editing necessary 
- - Three (3) adjustable levels of detail Support for times from Seconds through Decades 
+ - Three (3) adjustable levels of detail 
+ - Support for times from Seconds through Decades 
  - Configurable display options for Index.php, viewforum.php, viewtopic.php 
  - "Extended" detail option appends phpBB native timestamp to the end of the TimeAgo output
  - Automatically adapts for proper word order for non-English languages
