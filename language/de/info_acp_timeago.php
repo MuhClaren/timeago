@@ -18,12 +18,12 @@
 	/**
 	 * DO NOT CHANGE.
 	 */
-	if (defined('IN_PHPBB') === FALSE)
+	if (defined('IN_PHPBB') === false)
 	{
 		exit;
 	}
 
-	if (empty($lang) || is_array($lang) === FALSE)
+	if (empty($lang) || is_array($lang) === false)
 	{
 		$lang = [];
 	}
