@@ -61,12 +61,6 @@
 			// initialize error container
 			$error = '';
 
-			// silence scrutinizer warning
-			if ($id)
-			{
-				// do nothing
-			}
-
 			// use switch for future module expansion cases
 			switch ($mode)
 			{
