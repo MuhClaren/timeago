@@ -125,8 +125,8 @@
 		{
 			if (!empty($this->config['ta_timer']))
 			{
-				$timer_value = ((int)$then + (86400 * (int)$this->config['ta_timer']));
-				$deactivate  = (bool)(time() > $timer_value);
+				$timer_value = ((int) $then + (86400 * (int) $this->config['ta_timer']));
+				$deactivate  = (bool) (time() > $timer_value);
 			}
 			else
 			{
@@ -153,9 +153,9 @@
 			{
 				// Czech
 				case 'cs':
-				// German
+					// German
 				case 'de':
-				// Español
+					// Español
 				case 'es':
 					$output = !empty($timeago) ? $ago.' '.$timeago.' '.$extend : null;
 					break;
@@ -186,7 +186,7 @@
 			if ($mode === 'cat')
 			{
 				$last_post_time = $row['forum_last_post_time'];
-				$native_lp_time = $this->user->format_date($last_post_time);
+				$native_lp_time = $this->native_lastpost_time($last_post_time);
 
 			}
 			else if ($mode === 'viewforum')
@@ -194,19 +194,19 @@
 				$first_post_time = $row['topic_time'];
 				$last_post_time  = $row['topic_last_post_time'];
 				$native_fp_time  = $this->user->format_date($first_post_time);
-				$native_lp_time  = $this->user->format_date($last_post_time);
+				$native_lp_time  = $this->native_lastpost_time($last_post_time);
 			}
 			else if ($mode === 'viewtopic')
 			{
 				$last_post_time = $row['post_time'];
-				$native_lp_time = $this->user->format_date($last_post_time);
+				$native_lp_time = $this->native_lastpost_time($last_post_time);
 			}
 
 			$detail       = !empty($this->config['ta_'.$mode]) ? $this->config['ta_'.$mode] : '';
-			$fp_extend    = !empty($this->config['ta_'.$mode.'_extended']) ? ' ('.$native_fp_time.')' : '';
-			$lp_extend    = !empty($this->config['ta_'.$mode.'_extended']) ? ' ('.$native_lp_time.')' : '';
-			$fp_ta_output = !empty($detail) ? $this->build_ta_output($this->time_ago($first_post_time, $detail), $fp_extend) : $native_fp_time;
-			$lp_ta_output = !empty($detail) ? $this->build_ta_output($this->time_ago($last_post_time, $detail), $lp_extend) : $native_lp_time;
+			$fp_extend    = $this->firstpost_extend($mode, $native_fp_time);
+			$lp_extend    = $this->lastpost_extend($mode, $native_lp_time);
+			$fp_ta_output = $this->firstpost_ta_output($detail, $first_post_time, $fp_extend, $native_fp_time);
+			$lp_ta_output = $this->lastpost_ta_output($detail, $last_post_time, $lp_extend, $native_lp_time);
 
 			switch ($mode)
 			{
@@ -245,6 +245,74 @@
 			}//end switch
 
 			return $block;
+		}
+
+		/**
+		 * @param $detail
+		 * @param $last_post_time
+		 * @param $lp_extend
+		 * @param $native_lp_time
+		 *
+		 * @return string
+		 */
+		public function lastpost_ta_output($detail, $last_post_time, $lp_extend, $native_lp_time)
+		{
+			$lp_ta_output = !empty($detail) ? $this->build_ta_output($this->time_ago($last_post_time, $detail), $lp_extend) : $native_lp_time;
+
+			return $lp_ta_output;
+		}
+
+		/**
+		 * @param $detail
+		 * @param $first_post_time
+		 * @param $fp_extend
+		 * @param $native_fp_time
+		 *
+		 * @return string
+		 */
+		public function firstpost_ta_output($detail, $first_post_time, $fp_extend, $native_fp_time)
+		{
+			$fp_ta_output = !empty($detail) ? $this->build_ta_output($this->time_ago($first_post_time, $detail), $fp_extend) : $native_fp_time;
+
+			return $fp_ta_output;
+		}
+
+		/**
+		 * @param $mode
+		 * @param $native_lp_time
+		 *
+		 * @return string
+		 */
+		public function lastpost_extend($mode, $native_lp_time)
+		{
+			$lp_extend = !empty($this->config['ta_'.$mode.'_extended']) ? ' ('.$native_lp_time.')' : '';
+
+			return $lp_extend;
+		}
+
+		/**
+		 * @param $mode
+		 * @param $native_fp_time
+		 *
+		 * @return string
+		 */
+		public function firstpost_extend($mode, $native_fp_time)
+		{
+			$fp_extend = !empty($this->config['ta_'.$mode.'_extended']) ? ' ('.$native_fp_time.')' : '';
+
+			return $fp_extend;
+		}
+
+		/**
+		 * @param $last_post_time
+		 *
+		 * @return mixed
+		 */
+		public function native_lastpost_time($last_post_time)
+		{
+			$native_lp_time = $this->user->format_date($last_post_time);
+
+			return $native_lp_time;
 		}
 
 	}
