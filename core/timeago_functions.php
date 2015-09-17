@@ -60,7 +60,7 @@
 		 *
 		 * @return string
 		 */
-		public function time_ago($timestamp, $recursion = 0)
+		private function time_ago($timestamp, $recursion = 0)
 		{
 			// current server epoch time
 			$current_time = time();
@@ -112,101 +112,28 @@
 		}
 
 		/**
-		 * Assign TimeAgo timestamps into viewtopic.php template variables.
+		 * TimeAgo Timer.
 		 *
-		 * @param array $row   Row data
-		 * @param array $block Template vars array
+		 * Function returns true / false used to determine if TimeAgo should revert
+		 * to normal phpBB date-time format, based on admin-configurable timer setting
 		 *
-		 * @return array Template vars array
+		 * @param int $then epoch time value from post_time
+		 *
+		 * @return bool $deactivate true or false
 		 */
-		public function set_cat_timeago($row, $block)
+		private function ta_timer($then)
 		{
-			/*
-			 * Set our internal vars
-			 *
-			 * @var integer $detail  small int to determine our detail level for the output string
-			 * @var string  $extend  optional string containing native phpBB (date-time) to append to the timeago output
-			 * @var string  $timeago the meat and potatoes - the processed timeago substring ready for output build
-			 */
-			// if posts exist
-			if (!empty($row['forum_last_post_time']))
+			if (!empty($this->config['ta_timer']))
 			{
-				$detail    = !empty($this->config['ta_cat']) ? $this->config['ta_cat'] : '';
-				$extend    = !empty($this->config['ta_cat_extended']) ? ' ('.$this->user->format_date($row['forum_last_post_time']).')' : '';
-				$timeago   = !empty($this->config['ta_cat']) ? $this->time_ago($row['forum_last_post_time'], $detail) : '';
-				$ta_output = !empty($timeago) ? $this->build_ta_output($timeago, $extend) : $this->user->format_date($row['forum_last_post_time']);
-
-				$block = array_merge(
-					$block,
-					[
-						'TIMEAGO'             => $this->config['ta_active'],
-						'LAST_POST_TIME_ORIG' => $this->user->format_date($row['forum_last_post_time']),
-						// if ta_timer == true deactivate timeago, otherwise use timeago
-						'LAST_POST_TIME'      => $this->ta_timer($row['forum_last_post_time']) === true ? $this->user->format_date($row['forum_last_post_time']) : $ta_output,
-					]
-				);
+				$timer_value = ((int)$then + (86400 * (int)$this->config['ta_timer']));
+				$deactivate  = (bool)(time() > $timer_value);
+			}
+			else
+			{
+				$deactivate = false;
 			}
 
-			return $block;
-		}
-
-		/**
-		 * Assign TimeAgo timestamps into viewforum.php template variables.
-		 *
-		 * @param array $row   Row data
-		 * @param array $block Template vars array
-		 *
-		 * @return array Template vars array
-		 */
-		public function set_topics_timeago($row, $block)
-		{
-			$detail       = !empty($this->config['ta_viewforum']) ? $this->config['ta_viewforum'] : '';
-			$fp_extend    = !empty($this->config['ta_viewforum_extended']) ? ' ('.$this->user->format_date($row['topic_time']).')' : '';
-			$lp_extend    = !empty($this->config['ta_viewforum_extended']) ? ' ('.$this->user->format_date($row['topic_last_post_time']).')' : '';
-			$fp_timeago   = !empty($this->config['ta_viewforum']) ? $this->time_ago($row['topic_time'], $detail) : '';
-			$lp_timeago   = !empty($this->config['ta_viewforum']) ? $this->time_ago($row['topic_last_post_time'], $detail) : '';
-			$ta_output_fp = !empty($fp_timeago) ? $this->build_ta_output($fp_timeago, $fp_extend) : $this->user->format_date($row['topic_time']);
-			$ta_output_lp = !empty($lp_timeago) ? $this->build_ta_output($lp_timeago, $lp_extend) : $this->user->format_date($row['topic_last_post_time']);
-
-			$block = array_merge(
-				$block,
-				[
-					'TIMEAGO'              => $this->config['ta_active'],
-					'FIRST_POST_TIME_ORIG' => $this->user->format_date($row['topic_time']),
-					'LAST_POST_TIME_ORIG'  => $this->user->format_date($row['topic_last_post_time']),
-					'FIRST_POST_TIME'      => $this->ta_timer($row['topic_time']) === true ? $this->user->format_date($row['topic_time']) : $ta_output_fp,
-					'LAST_POST_TIME'       => $this->ta_timer($row['topic_last_post_time']) === true ? $this->user->format_date($row['topic_last_post_time']) : $ta_output_lp,
-				]
-			);
-
-			return $block;
-		}
-
-		/**
-		 * Assign TimeAgo timestamps into viewtopic.php template variables.
-		 *
-		 * @param array $row   Row data
-		 * @param array $block Template vars array
-		 *
-		 * @return array Template vars array
-		 */
-		public function set_posts_timeago($row, $block)
-		{
-			$detail    = !empty($this->config['ta_viewtopic']) ? $this->config['ta_viewtopic'] : '';
-			$extend    = !empty($this->config['ta_viewtopic_extended']) ? ' ('.$this->user->format_date($row['post_time']).')' : '';
-			$timeago   = !empty($this->config['ta_viewtopic']) ? $this->time_ago($row['post_time'], $detail) : '';
-			$ta_output = !empty($timeago) ? $this->build_ta_output($timeago, $extend) : $this->user->format_date($row['post_time']);
-
-			$block = array_merge(
-				$block,
-				[
-					'TIMEAGO'        => $this->config['ta_active'],
-					'POST_DATE_ORIG' => $this->user->format_date($row['post_time']),
-					'POST_DATE'      => $this->ta_timer($row['post_time']) === true ? $this->user->format_date($row['post_time']) : $ta_output,
-				]
-			);
-
-			return $block;
+			return $deactivate;
 		}
 
 		/**
@@ -217,7 +144,7 @@
 		 *
 		 * @return string $output
 		 */
-		public function build_ta_output($timeago, $extend)
+		private function build_ta_output($timeago, $extend)
 		{
 			$language = $this->user->data['user_lang'];
 			$ago      = $this->user->lang('TA_AGO');
@@ -232,38 +159,92 @@
 				case 'es':
 					$output = !empty($timeago) ? $ago.' '.$timeago.' '.$extend : null;
 					break;
-
-				// English - fallthrough
 				default:
 					$output = !empty($timeago) ? $timeago.' '.$ago.' '.$extend : null;
 					break;
-			}
+			}//end switch
 
 			return $output;
 		}
 
 		/**
-		 * TimeAgo Timer.
+		 * Inject TimeAgo timestamps into template variables.
 		 *
-		 * Function returns true / false used to determine if TimeAgo should revert
-		 * to normal phpBB date-time format, based on admin-configurable timer setting
+		 * @param string $mode  cat, viewforum, or viewtopic
+		 * @param array  $row   Row data
+		 * @param array  $block Template vars array
 		 *
-		 * @param int $then epoch time value from post_time
-		 *
-		 * @return bool $deactivate true or false
+		 * @return array Template vars array
 		 */
-		public function ta_timer($then)
+		public function inject_timeago($mode, $row, $block)
 		{
-			if (!empty($this->config['ta_timer']))
+			$first_post_time = '';
+			$last_post_time  = '';
+			$native_fp_time  = '';
+			$native_lp_time  = '';
+
+			if ($mode === 'cat')
 			{
-				$timer_value = ((int) $then + (86400 * (int) $this->config['ta_timer']));
-				$deactivate  = (bool) (time() > $timer_value);
+				$last_post_time = $row['forum_last_post_time'];
+				$native_lp_time = $this->user->format_date($last_post_time);
+
 			}
-			else
+			else if ($mode === 'viewforum')
 			{
-				$deactivate = false;
+				$first_post_time = $row['topic_time'];
+				$last_post_time  = $row['topic_last_post_time'];
+				$native_fp_time  = $this->user->format_date($first_post_time);
+				$native_lp_time  = $this->user->format_date($last_post_time);
+			}
+			else if ($mode === 'viewtopic')
+			{
+				$last_post_time = $row['post_time'];
+				$native_lp_time = $this->user->format_date($last_post_time);
 			}
 
-			return $deactivate;
+			$detail       = !empty($this->config['ta_'.$mode]) ? $this->config['ta_'.$mode] : '';
+			$fp_extend    = !empty($this->config['ta_'.$mode.'_extended']) ? ' ('.$native_fp_time.')' : '';
+			$lp_extend    = !empty($this->config['ta_'.$mode.'_extended']) ? ' ('.$native_lp_time.')' : '';
+			$fp_ta_output = !empty($detail) ? $this->build_ta_output($this->time_ago($first_post_time, $detail), $fp_extend) : $native_fp_time;
+			$lp_ta_output = !empty($detail) ? $this->build_ta_output($this->time_ago($last_post_time, $detail), $lp_extend) : $native_lp_time;
+
+			switch ($mode)
+			{
+				case 'cat':
+					// if posts exist
+					if (!empty($last_post_time))
+					{
+						$block = array_merge(
+							$block,
+							[
+								'LAST_POST_TIME' => $this->ta_timer($last_post_time) === true ? $native_lp_time : $lp_ta_output,
+							]
+						);
+					}
+					break;
+				case 'viewforum':
+					$block = array_merge(
+						$block,
+						[
+							'FIRST_POST_TIME' => $this->ta_timer($first_post_time) === true ? $native_fp_time : $fp_ta_output,
+							'LAST_POST_TIME'  => $this->ta_timer($last_post_time) === true ? $native_lp_time : $lp_ta_output,
+						]
+					);
+					break;
+				case 'viewtopic':
+					$block = array_merge(
+						$block,
+						[
+							'POST_DATE' => $this->ta_timer($last_post_time) === true ? $native_lp_time : $lp_ta_output,
+						]
+					);
+					break;
+				default:
+					// obligatory default comment
+					break;
+			}//end switch
+
+			return $block;
 		}
+
 	}
