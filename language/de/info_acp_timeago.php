@@ -18,12 +18,12 @@
 	/**
 	 * DO NOT CHANGE.
 	 */
-	if (defined('IN_PHPBB') === false)
+	if (defined('IN_PHPBB') === FALSE)
 	{
 		exit;
 	}
 
-	if (empty($lang) || is_array($lang) === false)
+	if (empty($lang) || is_array($lang) === FALSE)
 	{
 		$lang = [];
 	}
@@ -32,7 +32,7 @@
 		$lang,
 		[
 			// module category and section titles
-			'ACP_TIMEAGO_TITLE'            => 'Zeit Bevor',
-			'ACP_TIMEAGO_GENERAL_SETTINGS' => 'Generelle Einstellungen',
+			'ACP_TIMEAGO_TITLE'            => 'Vergangene Zeit',
+			'ACP_TIMEAGO_GENERAL_SETTINGS' => 'Allgemeine Einstellungen',
 		]
 	);

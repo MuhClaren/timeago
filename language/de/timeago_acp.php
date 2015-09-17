@@ -19,12 +19,12 @@
 	/**
 	 * DO NOT CHANGE.
 	 */
-	if (defined('IN_PHPBB') === false)
+	if (defined('IN_PHPBB') === FALSE)
 	{
 		exit;
 	}
 
-	if (empty($lang) || is_array($lang) === false)
+	if (empty($lang) || is_array($lang) === FALSE)
 	{
 		$lang = [];
 	}
@@ -47,22 +47,22 @@
 			'TA_MEDIUM'                   => 'Mittel (Vor 1 Jahr 2 Monaten)',
 			'TA_FULL'                     => 'Vollständig (Vor 1 Jahr 2 Monaten 3 Tagen)',
 			// general settings
-			'TA_GENERAL_SETTINGS'         => 'Generelle Einstellungen',
-			'TA_GENERAL_SETTINGS_EXPLAIN' => 'Anpassen der Zeit Bevor Einstellungen',
-			'TA_DISPLAY_SETTINGS'         => 'TimeAgo Format Optionen',
+			'TA_GENERAL_SETTINGS'         => 'Allgemeine Einstellungen',
+			'TA_GENERAL_SETTINGS_EXPLAIN' => 'Anpassen der Vergangenen Zeit Einstellungen',
+			'TA_DISPLAY_SETTINGS'         => 'Vergangene Zeit Format Optionen',
 			'TA_CAT'                      => 'index.php',
-			'TA_CAT_EXPLAIN'              => 'Fügt Zeit Bevor auf Forum-Kategorien für letzte Beiträge hinzu',
+			'TA_CAT_EXPLAIN'              => 'Fügt Vergangene Zeit auf Forum-Kategorien für letzte Beiträge hinzu',
 			'TA_VIEWFORUM'                => 'viewforum.php',
-			'TA_VIEWFORUM_EXPLAIN'        => 'Fügt Zeit Bevor auf die Beitrags Listen in der Forum Übersicht hinzu',
+			'TA_VIEWFORUM_EXPLAIN'        => 'Fügt Vergangene Zeit auf die Beitrags Listen in der Forum Übersicht hinzu',
 			'TA_VIEWTOPIC'                => 'viewtopic.php',
-			'TA_VIEWTOPIC_EXPLAIN'        => 'Fügt Zeit Bevor jedem Beitrag hinzu',
+			'TA_VIEWTOPIC_EXPLAIN'        => 'Fügt Vergangene Zeit jedem Beitrag hinzu',
 			'TA_EXTENDED'                 => 'Erweitert',
-			'TA_EXTENDED_EXPLAIN'         => 'Fügt eine native phpBB Zeitmarke am Ende von Zeit Bevor hinzu.',
+			'TA_EXTENDED_EXPLAIN'         => 'Fügt eine native phpBB Zeitmarke am Ende von Vergangene Zeit hinzu.',
 			'TA_EXTENDED_EXAMPLE'         => '(Z.b. Vor 9 Stunden (Sa Aug 08, 2015 11:57))',
 			'TA_DETAIL'                   => 'Detail Level',
-			'TA_TIMER_SETTINGS'           => 'Timer Settings',
-			'TA_TIMER'                    => 'Timer',
-			'TA_TIMER_EXPLAIN'            => 'Duration of time (days) from the post time that TimeAgo should be active. Example: setting this to 2 will cause TimeAgo to revert to the normal phpBB date-time format after 2 days. If no value is set TimeAgo will never revert. Valid input: 1 - 999, 0 or blank disables this option',
-			'TA_DAYS'                     => 'Days',
+			'TA_TIMER_SETTINGS'           => 'Countdown Einstellungen',
+			'TA_TIMER'                    => 'Countdown',
+			'TA_TIMER_EXPLAIN'            => 'Dauer der Zeit (Tagen) von der Beitragszeit wo Vergangene Zeit aktiv sein soll. Beispiel: Einstellungen von 2 wird Vergangene Zeit veranlassen die normale PHPBB-Zeit Einstellung zurückzusetzen. Wird kein Wert angegeben wird Vergangene Zeit niemals zurückgesetzt. Mögliche Eingaben: 1 - 999, 0 oder leer schaltet die Option aus.',
+			'TA_DAYS'                     => 'Tage',
 		]
 	);
