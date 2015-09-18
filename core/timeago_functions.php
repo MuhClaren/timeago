@@ -209,10 +209,10 @@
 			$ta_lpt_out = (string) $this->build_ta_output($ta_lpt, $lp_extend);
 
 			// assembled string ready for injection first post time
-			$first_post_time = $this->ta_timer($raw_fpt) === true || $detail === 0 ? $native_fpt : $ta_fpt_out;
+			$first_post_time = $this->first_post_time($raw_fpt, $detail, $native_fpt, $ta_fpt_out);
 
 			// assembled string ready for injection last post time
-			$last_post_time = $this->ta_timer($raw_lpt) === true || $detail === 0 ? $native_lpt : $ta_lpt_out;
+			$last_post_time = $this->last_post_time($raw_lpt, $detail, $native_lpt, $ta_lpt_out);
 
 			switch ($mode)
 			{
@@ -321,5 +321,33 @@
 			$lp_extend = !empty($this->config['ta_'.$mode.'_extended']) ? (string) ' ('.$native_lpt.')' : '';
 
 			return $lp_extend;
+		}
+
+		/**
+		 * @param $raw_fpt
+		 * @param $detail
+		 * @param $native_fpt
+		 * @param $ta_fpt_out
+		 * @return mixed
+		 */
+		private function first_post_time($raw_fpt, $detail, $native_fpt, $ta_fpt_out)
+		{
+			$first_post_time = $this->ta_timer($raw_fpt) === true || $detail === 0 ? $native_fpt : $ta_fpt_out;
+
+			return $first_post_time;
+		}
+
+		/**
+		 * @param $raw_lpt
+		 * @param $detail
+		 * @param $native_lpt
+		 * @param $ta_lpt_out
+		 * @return mixed
+		 */
+		private function last_post_time($raw_lpt, $detail, $native_lpt, $ta_lpt_out)
+		{
+			$last_post_time = $this->ta_timer($raw_lpt) === true || $detail === 0 ? $native_lpt : $ta_lpt_out;
+
+			return $last_post_time;
 		}
 	}
