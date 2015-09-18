@@ -190,17 +190,37 @@
 			switch ($mode)
 			{
 				case 'cat':
-					$block = $this->cat_tpl_ary($block, $raw_lpt, $last_post_time);
+					if (!empty($raw_lpt))
+					{
+						$block = array_merge(
+							$block,
+							[
+								'LAST_POST_TIME' => $last_post_time,
+							]
+						);
+					}
 					break;
 				case 'viewforum':
-					$block = $this->topic_tpl_ary($block, $first_post_time, $last_post_time);
+					$block = array_merge(
+						$block,
+						[
+							'FIRST_POST_TIME' => $first_post_time,
+							'LAST_POST_TIME'  => $last_post_time,
+						]
+					);
 					break;
 				case 'viewtopic':
-					$block = $this->post_tpl_ary($block, $first_post_time);
+					$block = array_merge(
+						$block,
+						[
+							'POST_DATE' => $first_post_time,
+						]
+					);
 					break;
 				default:
 					break;
 			}//end switch
+
 			return $block;
 		}
 
@@ -300,64 +320,5 @@
 			$last_post_time = $this->ta_timer($raw_lpt) === true || $detail === 0 ? $native_lpt : $ta_lpt_out;
 
 			return $last_post_time;
-		}
-
-		/**
-		 * @param $block
-		 * @param $raw_lpt
-		 * @param $last_post_time
-		 * @return array
-		 */
-		private function cat_tpl_ary($block, $raw_lpt, $last_post_time)
-		{
-			if (!empty($raw_lpt))
-			{
-				$block = array_merge(
-					$block,
-					[
-						'LAST_POST_TIME' => $last_post_time,
-					]
-				);
-
-				return $block;
-			}
-
-			return $block;
-		}
-
-		/**
-		 * @param $block
-		 * @param $first_post_time
-		 * @param $last_post_time
-		 * @return array
-		 */
-		private function topic_tpl_ary($block, $first_post_time, $last_post_time)
-		{
-			$block = array_merge(
-				$block,
-				[
-					'FIRST_POST_TIME' => $first_post_time,
-					'LAST_POST_TIME'  => $last_post_time,
-				]
-			);
-
-			return $block;
-		}
-
-		/**
-		 * @param $block
-		 * @param $first_post_time
-		 * @return array
-		 */
-		private function post_tpl_ary($block, $first_post_time)
-		{
-			$block = array_merge(
-				$block,
-				[
-					'POST_DATE' => $first_post_time,
-				]
-			);
-
-			return $block;
 		}
 	}
