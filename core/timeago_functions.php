@@ -173,19 +173,19 @@
 		 */
 		public function inject_timeago($mode, $prefix, $row, $block)
 		{
-			$detail = (int) $this->config['ta_'.$mode];// detail level 0: off 3: full
-			$raw_fpt = (int) $row[$prefix.'_time'];// raw timestamp of first post time
-			$raw_lpt = (int) $row[$prefix.'_last_post_time'];// raw timestamp of first post time
-			$native_fpt = $this->native_fpt($raw_fpt);// formatted native timestamp of first post time
-			$native_lpt = $this->native_lpt($raw_lpt);// formatted native timestamp of last post time
-			$ta_fpt = $this->ta_fpt($raw_fpt, $detail);// timeago processed first post time
-			$ta_lpt = $this->ta_lpt($raw_lpt, $detail);// timeago processed last post time
-			$fp_extend = $this->fp_extend($mode, $native_fpt);// extended string first post time
-			$lp_extend = $this->lp_extend($mode, $native_lpt);// extended string last post time
-			$ta_fpt_out = (string) $this->build_ta_output($ta_fpt, $fp_extend);// timeago output first post time
-			$ta_lpt_out = (string) $this->build_ta_output($ta_lpt, $lp_extend);// timeago output last post time
-			$first_post_time = $this->first_post_time($raw_fpt, $detail, $native_fpt, $ta_fpt_out);// assembled string ready for injection first post time
-			$last_post_time = $this->last_post_time($raw_lpt, $detail, $native_lpt, $ta_lpt_out);// assembled string ready for injection last post time
+			$detail = (int) $this->config['ta_'.$mode]; // detail level 0: off 3: full
+			$raw_fpt = (int) $row[$prefix.'_time']; // raw timestamp of first post time
+			$raw_lpt = (int) $row[$prefix.'_last_post_time']; // raw timestamp of first post time
+			$native_fpt = $this->native_fpt($raw_fpt); // formatted native timestamp of first post time
+			$native_lpt = $this->native_lpt($raw_lpt); // formatted native timestamp of last post time
+			$ta_fpt = $this->ta_fpt($raw_fpt, $detail); // timeago processed first post time
+			$ta_lpt = $this->ta_lpt($raw_lpt, $detail); // timeago processed last post time
+			$fp_extend = $this->fp_extend($mode, $native_fpt); // extended string first post time
+			$lp_extend = $this->lp_extend($mode, $native_lpt); // extended string last post time
+			$ta_fpt_out = (string) $this->build_ta_output($ta_fpt, $fp_extend); // timeago output first post time
+			$ta_lpt_out = (string) $this->build_ta_output($ta_lpt, $lp_extend); // timeago output last post time
+			$first_post_time = $this->first_post_time($raw_fpt, $detail, $native_fpt, $ta_fpt_out); // assembled string ready for injection first post time
+			$last_post_time = $this->last_post_time($raw_lpt, $detail, $native_lpt, $ta_lpt_out); // assembled string ready for injection last post time
 
 			switch ($mode)
 			{
