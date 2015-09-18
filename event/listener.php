@@ -57,8 +57,9 @@
 		public function modify_forum_row($event)
 		{
 			$mode          = 'cat';
+			$prefix        = 'forum';
 			$block         = $event['forum_row'] ? 'forum_row' : 'tpl_ary';
-			$event[$block] = $this->timeago_functions->inject_timeago($mode, $event['row'], $event[$block]);
+			$event[$block] = $this->timeago_functions->inject_timeago($mode, $prefix, $event['row'], $event[$block]);
 		}
 
 		/**
@@ -69,8 +70,9 @@
 		public function modify_topicrow($event)
 		{
 			$mode          = 'viewforum';
+			$prefix        = 'topic';
 			$block         = $event['topic_row'] ? 'topic_row' : 'tpl_ary';
-			$event[$block] = $this->timeago_functions->inject_timeago($mode, $event['row'], $event[$block]);
+			$event[$block] = $this->timeago_functions->inject_timeago($mode, $prefix, $event['row'], $event[$block]);
 		}
 
 		/**
@@ -81,7 +83,8 @@
 		public function modify_post_row($event)
 		{
 			$mode          = 'viewtopic';
+			$prefix        = 'post';
 			$block         = $event['post_row'] ? 'post_row' : 'tpl_ary';
-			$event[$block] = $this->timeago_functions->inject_timeago($mode, $event['row'], $event[$block]);
+			$event[$block] = $this->timeago_functions->inject_timeago($mode, $prefix, $event['row'], $event[$block]);
 		}
 	}

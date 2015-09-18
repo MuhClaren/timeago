@@ -1,9 +1,9 @@
 [![Build Status](https://travis-ci.org/MuhClaren/timeago.svg?branch=master)](https://travis-ci.org/MuhClaren/timeago)
-[![Coverage Status](https://coveralls.io/repos/MuhClaren/timeago/badge.svg?branch=master&service=github)](https://coveralls.io/github/MuhClaren/timeago?branch=master)
+[![Code Quality](https://img.shields.io/scrutinizer/g/MuhClaren/timeago.svg?style=flat)](https://travis-ci.org/MuhClaren/timeago)
 
 TimeAgo - A phpBB 3.1 extension
 -------------------------------
-**Extension Version:** 1.3.1b    
+**Extension Version:** 1.4.0b    
 **Requirements:** PHP 5.3. phpBB 3.1.x  
 **Author:** MuhClaren  
 
@@ -42,8 +42,14 @@ Turkish (TR): [Cycling](https://www.phpbb.com/community/memberlist.php?mode=view
 *Configure:* Configuration options are available from the "Extensions" tab, TimeAgo General Settings.  
 
 **History:**   
- v1.3.1 Change Log:
-
+v1.4.0 Change Log:  
+ - [UPGRADE] Support added for Paybas 'Recent Topics' extension  
+ - [FIX] Updated incomplete translation  
+ - [FIX] Minor UI issue (placement of checkbox element)  
+ - [QA] Add support for Turkish language  
+ - [QA] Clean, simplify, optimize core methods  
+ 
+v1.3.1 Change Log:  
  - [FEATURE] Timer setting to revert back to native output after *n* days
  - [FIX] Support for language word order (i.e.  placement of 'ago')  
  - [FIX] Index.php - check for posts to determine output  

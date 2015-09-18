@@ -62,26 +62,22 @@
 		 */
 		private function time_ago($timestamp, $recursion = 0)
 		{
-			// current server epoch time
-			$current_time = time();
 			// our working value available to 'spend' on period types
-			$difference = ($current_time - $timestamp);
+			$difference = (time() - $timestamp);
 			// 'price' of each period type from seconds to decades
 			$length = [1, 60, 3600, 86400, 604800, 2630880, 31570560, 315705600];
-			// define units
+			// units
 			$units = 0;
 
 			for ($position = sizeof($length) - 1; ($position >= 0) && (($units = $difference / $length[$position]) <= 1); $position--)
 			{
-
+				if ($position < 0)
+				{
+					$position = 0;
+				}
 			};
 
-			if ($position < 0)
-			{
-				$position = 0;
-			}
-
-			$_tm = $current_time - ($difference % $length[$position]);
+			$_tm = time() - ($difference % $length[$position]);
 
 			// clean up the float
 			$units = floor($units);
@@ -101,8 +97,8 @@
 			// build the timeago output
 			$timeago = sprintf('%d %s ', $units, $periods[$position]);
 
-			// are there still more levels of recursion available? are there more period types left? do we have enough remaining working time to 'buy' more units? If true, repeat loop.
-			if (($recursion > 1) && ($position >= 1) && (($current_time - $_tm) > 0))
+			// are there still more levels of recursion available? If true, repeat loop.
+			if (($recursion > 1) && ($position >= 1) && ((time() - $_tm) > 0))
 			{
 				$timeago .= $this->time_ago($_tm, --$recursion);
 			}
@@ -110,6 +106,7 @@
 			return $timeago;
 
 		}
+
 
 		/**
 		 * TimeAgo Timer.
@@ -125,10 +122,9 @@
 		{
 			if (!empty($this->config['ta_timer']))
 			{
-				$timer_value = ((int) $then + (86400 * (int) $this->config['ta_timer']));
+				$timer_value = ($then + (86400 * (int) $this->config['ta_timer']));
 				$deactivate  = (bool) (time() > $timer_value);
-			}
-			else
+			} else
 			{
 				$deactivate = false;
 			}
@@ -153,9 +149,9 @@
 			{
 				// Czech
 				case 'cs':
-					// German
+				// German
 				case 'de':
-					// Español
+				// Español
 				case 'es':
 					$output = !empty($timeago) ? $ago.' '.$timeago.' '.$extend : null;
 					break;
@@ -170,54 +166,64 @@
 		/**
 		 * Inject TimeAgo timestamps into template variables.
 		 *
-		 * @param string $mode  cat, viewforum, or viewtopic
-		 * @param array  $row   Row data
-		 * @param array  $block Template vars array
-		 *
+		 * @param string $mode   cat, viewforum, or viewtopic
+		 * @param string $prefix forum, topic, or post
+		 * @param array  $row    Row data
+		 * @param array  $block  Template vars array
 		 * @return array Template vars array
 		 */
-		public function inject_timeago($mode, $row, $block)
+		public function inject_timeago($mode, $prefix, $row, $block)
 		{
-			$first_post_time = '';
-			$last_post_time  = '';
-			$native_fp_time  = '';
-			$native_lp_time  = '';
 
-			if ($mode === 'cat')
-			{
-				$last_post_time = $row['forum_last_post_time'];
-				$native_lp_time = $this->native_lastpost_time($last_post_time);
+			// detail level 0: off 3: full
+			$detail = (int) $this->config['ta_'.$mode];
 
-			}
-			else if ($mode === 'viewforum')
-			{
-				$first_post_time = $row['topic_time'];
-				$last_post_time  = $row['topic_last_post_time'];
-				$native_fp_time  = $this->user->format_date($first_post_time);
-				$native_lp_time  = $this->native_lastpost_time($last_post_time);
-			}
-			else if ($mode === 'viewtopic')
-			{
-				$last_post_time = $row['post_time'];
-				$native_lp_time = $this->native_lastpost_time($last_post_time);
-			}
+			// raw timestamp of first post time
+			$raw_fpt = (int) $row[$prefix.'_time'];
 
-			$detail       = !empty($this->config['ta_'.$mode]) ? $this->config['ta_'.$mode] : '';
-			$fp_extend    = $this->firstpost_extend($mode, $native_fp_time);
-			$lp_extend    = $this->lastpost_extend($mode, $native_lp_time);
-			$fp_ta_output = $this->firstpost_ta_output($detail, $first_post_time, $fp_extend, $native_fp_time);
-			$lp_ta_output = $this->lastpost_ta_output($detail, $last_post_time, $lp_extend, $native_lp_time);
+			// raw timestamp of first post time
+			$raw_lpt = (int) $row[$prefix.'_last_post_time'];
+
+			// formatted native timestamp of first post time
+			$native_fpt = (string) $this->user->format_date($raw_fpt);
+
+			// formatted native timestamp of last post time
+			$native_lpt = (string) $this->user->format_date($raw_lpt);
+
+			// timeago processed first post time
+			$ta_fpt = (string) $this->time_ago($raw_fpt, $detail);
+
+			// timeago processed last post time
+			$ta_lpt = (string) $this->time_ago($raw_lpt, $detail);
+
+			// extended string first post time
+			$fp_extend = !empty($this->config['ta_'.$mode.'_extended']) ? (string) ' ('.$native_fpt.')' : '';
+
+			// extended string last post time
+			$lp_extend = !empty($this->config['ta_'.$mode.'_extended']) ? (string) ' ('.$native_lpt.')' : '';
+
+			// timeago output first post time
+			$ta_fpt_out = (string) $this->build_ta_output($ta_fpt, $fp_extend);
+
+			// timeago output last post time
+			$ta_lpt_out = (string) $this->build_ta_output($ta_lpt, $lp_extend);
+
+			// assembled string ready for injection first post time
+			$first_post_time = $this->ta_timer($raw_fpt) === true || $detail === 0 ? $native_fpt : $ta_fpt_out;
+
+			// assembled string ready for injection last post time
+			$last_post_time = $this->ta_timer($raw_lpt) === true || $detail === 0 ? $native_lpt : $ta_lpt_out;
 
 			switch ($mode)
 			{
 				case 'cat':
 					// if posts exist
-					if (!empty($last_post_time))
+					if (!empty($raw_lpt))
 					{
 						$block = array_merge(
 							$block,
 							[
-								'LAST_POST_TIME' => $this->ta_timer($last_post_time) === true ? $native_lp_time : $lp_ta_output,
+								'LAST_POST_TIME' => $last_post_time,
 							]
 						);
 					}
@@ -226,8 +232,8 @@
 					$block = array_merge(
 						$block,
 						[
-							'FIRST_POST_TIME' => $this->ta_timer($first_post_time) === true ? $native_fp_time : $fp_ta_output,
-							'LAST_POST_TIME'  => $this->ta_timer($last_post_time) === true ? $native_lp_time : $lp_ta_output,
+							'FIRST_POST_TIME' => $first_post_time,
+							'LAST_POST_TIME'  => $last_post_time,
 						]
 					);
 					break;
@@ -235,7 +241,7 @@
 					$block = array_merge(
 						$block,
 						[
-							'POST_DATE' => $this->ta_timer($last_post_time) === true ? $native_lp_time : $lp_ta_output,
+							'POST_DATE' => $first_post_time,
 						]
 					);
 					break;
@@ -246,73 +252,4 @@
 
 			return $block;
 		}
-
-		/**
-		 * @param $detail
-		 * @param $last_post_time
-		 * @param $lp_extend
-		 * @param $native_lp_time
-		 *
-		 * @return string
-		 */
-		public function lastpost_ta_output($detail, $last_post_time, $lp_extend, $native_lp_time)
-		{
-			$lp_ta_output = !empty($detail) ? $this->build_ta_output($this->time_ago($last_post_time, $detail), $lp_extend) : $native_lp_time;
-
-			return $lp_ta_output;
-		}
-
-		/**
-		 * @param $detail
-		 * @param $first_post_time
-		 * @param $fp_extend
-		 * @param $native_fp_time
-		 *
-		 * @return string
-		 */
-		public function firstpost_ta_output($detail, $first_post_time, $fp_extend, $native_fp_time)
-		{
-			$fp_ta_output = !empty($detail) ? $this->build_ta_output($this->time_ago($first_post_time, $detail), $fp_extend) : $native_fp_time;
-
-			return $fp_ta_output;
-		}
-
-		/**
-		 * @param $mode
-		 * @param $native_lp_time
-		 *
-		 * @return string
-		 */
-		public function lastpost_extend($mode, $native_lp_time)
-		{
-			$lp_extend = !empty($this->config['ta_'.$mode.'_extended']) ? ' ('.$native_lp_time.')' : '';
-
-			return $lp_extend;
-		}
-
-		/**
-		 * @param $mode
-		 * @param $native_fp_time
-		 *
-		 * @return string
-		 */
-		public function firstpost_extend($mode, $native_fp_time)
-		{
-			$fp_extend = !empty($this->config['ta_'.$mode.'_extended']) ? ' ('.$native_fp_time.')' : '';
-
-			return $fp_extend;
-		}
-
-		/**
-		 * @param $last_post_time
-		 *
-		 * @return mixed
-		 */
-		public function native_lastpost_time($last_post_time)
-		{
-			$native_lp_time = $this->user->format_date($last_post_time);
-
-			return $native_lp_time;
-		}
-
 	}

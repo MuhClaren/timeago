@@ -11,7 +11,7 @@
 	 * @copyright 2015 (c) MOP
 	 * @license   GNU General Public License v2
 	 */
-	namespace mop\timeago\migrations\v1_3_0;
+	namespace mop\timeago\migrations\v1_4_0;
 
 	/**
 	 * Class initial.
@@ -26,8 +26,6 @@
 		public function update_data()
 		{
 			return [
-				['config.add', ['ta_active', 1]],
-				['config.add', ['ta_version', '1.3.1']],
 				['config.add', ['ta_cat', 2]],
 				['config.add', ['ta_cat_extended', 0]],
 				['config.add', ['ta_viewforum', 2]],
@@ -48,8 +46,6 @@
 		public function revert_data()
 		{
 			return [
-				['config.remove', ['ta_active']],
-				['config.remove', ['ta_version']],
 				['config.remove', ['ta_cat']],
 				['config.remove', ['ta_cat_extended']],
 				['config.remove', ['ta_viewforum']],

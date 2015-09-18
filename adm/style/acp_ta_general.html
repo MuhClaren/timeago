@@ -47,9 +47,6 @@
 		user-select:           none;
 	}
 
-	dd {
-		padding: 13px;
-	}
 </style>
 
 <h1>{{ lang('TA_GENERAL_SETTINGS') }}</h1>
@@ -80,6 +77,8 @@
 				<label><input type="radio" class="radio" name="ta_cat" value="3" {% if TA_CAT == 3 %} checked="checked"{% endif %}/> {{ lang('TA_FULL') }}</label>
 			</dd>
 			<dd>
+				<br>
+				<br>
 				<input type="checkbox" name="ta_cat_extended" value="1" class="css-checkbox" id="ta_cat_extended" {% if TA_CAT_EXTENDED == 1 %} checked="checked"{% endif %}/>
 				<label for="ta_cat_extended" class="css-label">{{ lang('TA_EXTENDED') }} <span>{{ lang('TA_EXTENDED_EXAMPLE') }}</span></label>
 			</dd>
@@ -99,6 +98,8 @@
 				<label><input type="radio" class="radio" name="ta_viewforum" value="3" {% if TA_VIEWFORUM == 3 %} checked="checked"{% endif %}/> {{ lang('TA_FULL') }}</label>
 			</dd>
 			<dd>
+				<br>
+				<br>
 				<input type="checkbox" name="ta_viewforum_extended" value="1" class="css-checkbox" id="ta_viewforum_extended" {% if TA_VIEWFORUM_EXTENDED == 1 %} checked="checked"{% endif %}/>
 				<label for="ta_viewforum_extended" class="css-label">{{ lang('TA_EXTENDED') }} <span>{{ lang('TA_EXTENDED_EXAMPLE') }}</span></label>
 			</dd>
@@ -118,6 +119,8 @@
 				<label><input type="radio" class="radio" name="ta_viewtopic" value="3" {% if TA_VIEWTOPIC == 3 %} checked="checked"{% endif %}/> {{ lang('TA_FULL') }}</label>
 			</dd>
 			<dd>
+				<br>
+				<br>
 				<input type="checkbox" name="ta_viewtopic_extended" value="1" class="css-checkbox" id="ta_viewtopic_extended" {% if TA_VIEWTOPIC_EXTENDED == 1 %} checked="checked"{% endif %}/>
 				<label for="ta_viewtopic_extended" class="css-label">{{ lang('TA_EXTENDED') }} <span>{{ lang('TA_EXTENDED_EXAMPLE') }}</span></label>
 			</dd>
