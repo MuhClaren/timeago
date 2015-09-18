@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/MuhClaren/timeago.svg?branch=master)](https://travis-ci.org/MuhClaren/timeago)
-[![Code Quality](https://img.shields.io/scrutinizer/g/MuhClaren/timeago.svg?style=flat)](https://travis-ci.org/MuhClaren/timeago)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/MuhClaren/timeago/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/MuhClaren/timeago/?branch=master)  
 
 TimeAgo - A phpBB 3.1 extension
 -------------------------------
