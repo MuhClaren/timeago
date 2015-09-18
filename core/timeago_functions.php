@@ -185,22 +185,22 @@
 			$raw_lpt = (int) $row[$prefix.'_last_post_time'];
 
 			// formatted native timestamp of first post time
-			$native_fpt = (string) $this->user->format_date($raw_fpt);
+			$native_fpt = $this->native_fpt($raw_fpt);
 
 			// formatted native timestamp of last post time
-			$native_lpt = (string) $this->user->format_date($raw_lpt);
+			$native_lpt = $this->native_lpt($raw_lpt);
 
 			// timeago processed first post time
-			$ta_fpt = (string) $this->time_ago($raw_fpt, $detail);
+			$ta_fpt = $this->ta_fpt($raw_fpt, $detail);
 
 			// timeago processed last post time
-			$ta_lpt = (string) $this->time_ago($raw_lpt, $detail);
+			$ta_lpt = $this->ta_lpt($raw_lpt, $detail);
 
 			// extended string first post time
-			$fp_extend = !empty($this->config['ta_'.$mode.'_extended']) ? (string) ' ('.$native_fpt.')' : '';
+			$fp_extend = $this->fp_extend($mode, $native_fpt);
 
 			// extended string last post time
-			$lp_extend = !empty($this->config['ta_'.$mode.'_extended']) ? (string) ' ('.$native_lpt.')' : '';
+			$lp_extend = $this->lp_extend($mode, $native_lpt);
 
 			// timeago output first post time
 			$ta_fpt_out = (string) $this->build_ta_output($ta_fpt, $fp_extend);
@@ -251,5 +251,75 @@
 			}//end switch
 
 			return $block;
+		}
+
+		/**
+		 * @param $raw_fpt
+		 * @return string
+		 */
+		private function native_fpt($raw_fpt)
+		{
+			$native_fpt = (string) $this->user->format_date($raw_fpt);
+
+			return $native_fpt;
+		}
+
+		/**
+		 * @param $raw_lpt
+		 * @return string
+		 */
+		private function native_lpt($raw_lpt)
+		{
+			$native_lpt = (string) $this->user->format_date($raw_lpt);
+
+			return $native_lpt;
+		}
+
+		/**
+		 * @param $raw_fpt
+		 * @param $detail
+		 * @return string
+		 */
+		private function ta_fpt($raw_fpt, $detail)
+		{
+			$ta_fpt = (string) $this->time_ago($raw_fpt, $detail);
+
+			return $ta_fpt;
+		}
+
+		/**
+		 * @param $raw_lpt
+		 * @param $detail
+		 * @return string
+		 */
+		private function ta_lpt($raw_lpt, $detail)
+		{
+			$ta_lpt = (string) $this->time_ago($raw_lpt, $detail);
+
+			return $ta_lpt;
+		}
+
+		/**
+		 * @param $mode
+		 * @param $native_fpt
+		 * @return string
+		 */
+		private function fp_extend($mode, $native_fpt)
+		{
+			$fp_extend = !empty($this->config['ta_'.$mode.'_extended']) ? (string) ' ('.$native_fpt.')' : '';
+
+			return $fp_extend;
+		}
+
+		/**
+		 * @param $mode
+		 * @param $native_lpt
+		 * @return string
+		 */
+		private function lp_extend($mode, $native_lpt)
+		{
+			$lp_extend = !empty($this->config['ta_'.$mode.'_extended']) ? (string) ' ('.$native_lpt.')' : '';
+
+			return $lp_extend;
 		}
 	}
