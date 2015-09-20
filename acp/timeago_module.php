@@ -45,20 +45,21 @@
 		/**
 		 * Main ACP module.
 		 *
-		 * @param int    $id
-		 * @param string $mode
 		 */
-		public function main($id, $mode)
+		public function main()
 		{
 			$this->config          = $GLOBALS['config'];
 			$this->user            = $GLOBALS['user'];
 			$this->phpbb_root_path = $GLOBALS['phpbb_root_path'];
 			$this->request         = $GLOBALS['request'];
 			$this->template        = $GLOBALS['template'];
+
 			$this->user->add_lang('acp/common');
 			$this->user->add_lang_ext('mop/timeago', 'timeago_acp');
+
 			$this->tpl_name   = 'acp_ta_general';
 			$this->page_title = $this->user->lang('ACP_TIMEAGO_GENERAL_SETTINGS');
+
 			$form_key         = 'acp_ta_general';
 			add_form_key($form_key);
 
@@ -70,7 +71,7 @@
 		}
 
 		/**
-		 * @param $form_key
+		 * @param string $form_key
 		 */
 		private function set_config($form_key)
 		{
