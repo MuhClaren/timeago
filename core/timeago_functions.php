@@ -137,10 +137,10 @@
 				case 'de':
 				// Español
 				case 'es':
-					$output = !empty($timeago) ? $ago.' '.$timeago.' '.$extend : null;
+					$output = $ago.' '.$timeago.' '.$extend;
 				break;
 				default:
-					$output = !empty($timeago) ? $timeago.' '.$ago.' '.$extend : null;
+					$output = $timeago.' '.$ago.' '.$extend;
 				break;
 			}//end switch
 
