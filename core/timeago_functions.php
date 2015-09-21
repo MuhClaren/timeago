@@ -65,7 +65,7 @@
 			// our working value available to 'spend' on period types
 			$difference = (time() - $timestamp);
 			// 'price' of each period type from seconds to decades
-			$length = [1, 60, 3600, 86400, 604800, 2630880, 31570560, 315705600,];
+			$length = [1, 60, 3600, 86400, 604800, 2630880, 31570560, 315705600];
 
 			list($units, $position) = $this->step_count($length, $difference);
 
@@ -180,7 +180,9 @@
 			else
 			{
 				$block = array_merge($block, [
-					'FIRST_POST_TIME' => $first_post_time, 'LAST_POST_TIME' => $last_post_time, 'POST_DATE' => $first_post_time,
+					'FIRST_POST_TIME' => $first_post_time,
+					'LAST_POST_TIME'  => $last_post_time,
+					'POST_DATE'       => $first_post_time,
 				]);
 			}
 
@@ -301,8 +303,14 @@
 		private function set_period_ary($units)
 		{
 			$periods = [
-				$this->user->lang('TA_SECOND', $units), $this->user->lang('TA_MINUTE', $units), $this->user->lang('TA_HOUR', $units), $this->user->lang('TA_DAY', $units), $this->user->lang('TA_WEEK', $units),
-				$this->user->lang('TA_MONTH', $units), $this->user->lang('TA_YEAR', $units), $this->user->lang('TA_DECADE', $units),
+				$this->user->lang('TA_SECOND', $units),
+				$this->user->lang('TA_MINUTE', $units),
+				$this->user->lang('TA_HOUR', $units),
+				$this->user->lang('TA_DAY', $units),
+				$this->user->lang('TA_WEEK', $units),
+				$this->user->lang('TA_MONTH', $units),
+				$this->user->lang('TA_YEAR', $units),
+				$this->user->lang('TA_DECADE', $units),
 			];
 
 			return $periods;
@@ -337,7 +345,6 @@
 		private function step_count($length, $difference)
 		{
 			$units = 0;
-
 			// step count
 			for ($position = count($length) - 1; ($position >= 0) && (($units = $difference / $length[$position]) <= 1); $position--)
 			{
