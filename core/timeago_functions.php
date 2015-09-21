@@ -65,7 +65,7 @@
 			// our working value available to 'spend' on period types
 			$difference = (time() - $timestamp);
 			// 'price' of each period type from seconds to decades
-			$length = [1,60,3600,86400,604800,2630880,31570560,315705600,];
+			$length = [1, 60, 3600, 86400, 604800, 2630880, 31570560, 315705600,];
 
 			list($units, $position) = $this->step_count($length, $difference);
 
@@ -133,9 +133,9 @@
 			{
 				// Czech
 				case 'cs':
-				// German
+					// German
 				case 'de':
-				// Español
+					// Español
 				case 'es':
 					$output = $ago.' '.$timeago.' '.$extend;
 				break;
@@ -180,9 +180,7 @@
 			else
 			{
 				$block = array_merge($block, [
-					'FIRST_POST_TIME' => $first_post_time,
-					'LAST_POST_TIME'  => $last_post_time,
-					'POST_DATE'       => $first_post_time,
+					'FIRST_POST_TIME' => $first_post_time, 'LAST_POST_TIME' => $last_post_time, 'POST_DATE' => $first_post_time,
 				]);
 			}
 
@@ -343,12 +341,9 @@
 			// step count
 			for ($position = count($length) - 1; ($position >= 0) && (($units = $difference / $length[$position]) <= 1); $position--)
 			{
-				// to silence phpcs complaint about empty statement
-				if (true === 1)
-				{
-					;
-				}
-			};
+				// empty
+				;
+			}
 
 			return [$units, $position];
 		}
