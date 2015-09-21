@@ -62,9 +62,7 @@
 		 */
 		private function time_ago($timestamp, $recursion = 0)
 		{
-			// our working value available to 'spend' on period types
 			$difference = (time() - $timestamp);
-			// 'price' of each period type from seconds to decades
 			$length = [1, 60, 3600, 86400, 604800, 2630880, 31570560, 315705600];
 
 			list($units, $position) = $this->step_count($length, $difference);
@@ -76,16 +74,9 @@
 
 			$_tm = time() - ($difference % $length[$position]);
 
-			// clean up the float
 			$units = floor($units);
-
-			// get periods array
 			$periods = $this->set_period_ary($units);
-
-			// build the timeago output
 			$timeago = sprintf('%d %s ', $units, $periods[$position]);
-
-			// are there still more levels of recursion available? If true, repeat loop.
 			$timeago = $this->check_recursion($recursion, $position, $_tm, $timeago);
 
 			return $timeago;
