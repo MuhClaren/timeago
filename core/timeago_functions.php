@@ -164,13 +164,8 @@
 			}
 			else
 			{
-				$block = array_merge($block, [
-					'FIRST_POST_TIME' => $first_post_time,
-					'LAST_POST_TIME'  => $last_post_time,
-					'POST_DATE'       => $first_post_time,
-				]);
+				$block = array_merge($block, ['FIRST_POST_TIME' => $first_post_time, 'LAST_POST_TIME' => $last_post_time, 'POST_DATE' => $first_post_time, ]);
 			}
-
 			return $block;
 		}
 
