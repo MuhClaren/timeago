@@ -120,20 +120,14 @@
 			$language = $this->user->data['user_lang'];
 			$ago      = $this->user->lang('TA_AGO');
 
-			switch ($language)
+			if ($language === 'cs' || $language === 'de' || $language === 'es')
 			{
-				// Czech
-				case 'cs':
-					// German
-				case 'de':
-					// Español
-				case 'es':
-					$output = $ago.' '.$timeago.' '.$extend;
-				break;
-				default:
-					$output = $timeago.' '.$ago.' '.$extend;
-				break;
-			}//end switch
+				$output = $ago.' '.$timeago.' '.$extend;
+			}
+			else
+			{
+				$output = $timeago.' '.$ago.' '.$extend;
+			}
 
 			return $output;
 		}
