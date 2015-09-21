@@ -42,11 +42,7 @@
 		public static function getSubscribedEvents()
 		{
 			return [
-				'core.viewforum_modify_topicrow'           => 'modify_topicrow',
-				'core.viewtopic_modify_post_row'           => 'modify_post_row',
-				'core.display_forums_modify_template_vars' => 'modify_forum_row',
-				'paybas.recenttopics.modify_tpl_ary'       => 'modify_topicrow',
-			];
+				'core.viewforum_modify_topicrow' => 'modify_topicrow', 'core.viewtopic_modify_post_row' => 'modify_post_row', 'core.display_forums_modify_template_vars' => 'modify_forum_row', 'paybas.recenttopics.modify_tpl_ary' => 'modify_topicrow',];
 		}
 
 		/**
