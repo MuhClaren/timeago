@@ -3,7 +3,7 @@
 
 TimeAgo - A phpBB 3.1 extension
 -------------------------------
-**Extension Version:** 1.4.1b    
+**Extension Version:** 1.4.2b    
 **Requirements:** PHP 5.3. phpBB 3.1.x  
 **Author:** MuhClaren  
 
@@ -42,6 +42,9 @@ Turkish (TR): [Cycling](https://www.phpbb.com/community/memberlist.php?mode=view
 *Configure:* Configuration options are available from the "Extensions" tab, TimeAgo General Settings.  
 
 **History:**   
+v1.4.2 Change Log:  
+ - [QA] Optimize codebase via scrutinizer  
+ 
 v1.4.1 Change Log:  
  - [FIX] Divide by zero in timeago function caused by code formatter misplacing a curly brace  
  - [QA] Optimize acp timeago_module to reduce paths and complexity  

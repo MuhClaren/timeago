@@ -63,7 +63,7 @@
 		private function time_ago($timestamp, $recursion = 0)
 		{
 			$difference = (time() - $timestamp);
-			$length = [1, 60, 3600, 86400, 604800, 2630880, 31570560, 315705600];
+			$length     = [ 1, 60, 3600, 86400, 604800, 2630880, 31570560, 315705600 ];
 
 			list($units, $position) = $this->step_count($length, $difference);
 
@@ -72,11 +72,11 @@
 				$position = 0;
 			}
 
-			$_tm = time() - ($difference % $length[$position]);
+			$_tm = time() - ($difference % $length[ $position ]);
 
-			$units = floor($units);
+			$units   = floor($units);
 			$periods = $this->set_period_ary($units);
-			$timeago = sprintf('%d %s ', $units, $periods[$position]);
+			$timeago = sprintf('%d %s ', $units, $periods[ $position ]);
 			$timeago = $this->check_recursion($recursion, $position, $_tm, $timeago);
 
 			return $timeago;
@@ -94,9 +94,9 @@
 		 */
 		private function ta_timer($then)
 		{
-			if (!empty($this->config['ta_timer']))
+			if (!empty($this->config[ 'ta_timer' ]))
 			{
-				$timer_value = ($then + (86400 * (int) $this->config['ta_timer']));
+				$timer_value = ($then + (86400 * (int) $this->config[ 'ta_timer' ]));
 				$deactivate  = (bool) (time() > $timer_value);
 			}
 			else
@@ -117,7 +117,7 @@
 		 */
 		private function build_ta_output($timeago, $extend)
 		{
-			$language = $this->user->data['user_lang'];
+			$language = $this->user->data[ 'user_lang' ];
 			$ago      = $this->user->lang('TA_AGO');
 
 			if ($language === 'cs' || $language === 'de' || $language === 'es')
@@ -152,8 +152,9 @@
 			}
 			else
 			{
-				$block = array_merge($block, ['FIRST_POST_TIME' => $first_post_time, 'LAST_POST_TIME' => $last_post_time, 'POST_DATE' => $first_post_time, ]);
+				$block = array_merge($block, [ 'FIRST_POST_TIME' => $first_post_time, 'LAST_POST_TIME' => $last_post_time, 'POST_DATE' => $first_post_time, ]);
 			}
+
 			return $block;
 		}
 
@@ -215,7 +216,7 @@
 		 */
 		private function fp_extend($mode, $native_fpt)
 		{
-			$fp_extend = !empty($this->config['ta_'.$mode.'_extended']) ? (string) ' ('.$native_fpt.')' : '';
+			$fp_extend = !empty($this->config[ 'ta_'.$mode.'_extended' ]) ? (string) ' ('.$native_fpt.')' : '';
 
 			return $fp_extend;
 		}
@@ -228,7 +229,7 @@
 		 */
 		private function lp_extend($mode, $native_lpt)
 		{
-			$lp_extend = !empty($this->config['ta_'.$mode.'_extended']) ? (string) ' ('.$native_lpt.')' : '';
+			$lp_extend = !empty($this->config[ 'ta_'.$mode.'_extended' ]) ? (string) ' ('.$native_lpt.')' : '';
 
 			return $lp_extend;
 		}
@@ -314,13 +315,13 @@
 		{
 			$units = 0;
 			// step count
-			for ($position = count($length) - 1; ($position >= 0) && (($units = $difference / $length[$position]) <= 1); $position--)
+			for ($position = count($length) - 1; ($position >= 0) && (($units = $difference / $length[ $position ]) <= 1); $position--)
 			{
 				// empty
 				;
 			}
 
-			return [$units, $position];
+			return [ $units, $position ];
 		}
 
 		/**
@@ -332,9 +333,9 @@
 		 */
 		private function set_vars($mode, $prefix, $row)
 		{
-			$detail          = (int) $this->config['ta_'.$mode]; // detail level 0: off 3: full
-			$raw_fpt         = (int) $row[$prefix.'_time']; // raw timestamp of first post time
-			$raw_lpt         = (int) $row[$prefix.'_last_post_time']; // raw timestamp of first post time
+			$detail          = (int) $this->config[ 'ta_'.$mode ]; // detail level 0: off 3: full
+			$raw_fpt         = (int) $row[ $prefix.'_time' ]; // raw timestamp of first post time
+			$raw_lpt         = (int) $row[ $prefix.'_last_post_time' ]; // raw timestamp of first post time
 			$native_fpt      = $this->native_fpt($raw_fpt); // formatted native timestamp of first post time
 			$native_lpt      = $this->native_lpt($raw_lpt); // formatted native timestamp of last post time
 			$ta_fpt          = $this->ta_fpt($raw_fpt, $detail); // timeago processed first post time
@@ -346,6 +347,6 @@
 			$first_post_time = $this->first_post_time($raw_fpt, $detail, $native_fpt, $ta_fpt_out); // assembled string ready for injection first post time
 			$last_post_time  = $this->last_post_time($raw_lpt, $detail, $native_lpt, $ta_lpt_out);
 
-			return [$raw_lpt, $first_post_time, $last_post_time]; // assembled string ready for injection last post time
+			return [ $raw_lpt, $first_post_time, $last_post_time ]; // assembled string ready for injection last post time
 		}
 	}
