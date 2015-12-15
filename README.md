@@ -3,7 +3,7 @@
 
 TimeAgo - A phpBB 3.1 extension
 -------------------------------
-**Extension Version:** 1.4.2b    
+**Extension Version:** 1.4.2RC    
 **Requirements:** PHP 5.3. phpBB 3.1.x  
 **Author:** MuhClaren  
 
