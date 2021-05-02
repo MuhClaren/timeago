@@ -9,12 +9,6 @@ TimeAgo - A phpBB 3.1 extension
 
 **Extension Description:** This extension changes the phpBB native date-time to a Time Ago format. Example: (Before) Saturday, January 1. 1984 (After) 8 Months, 2 Weeks, 3 Days Ago.  
 
-**Screenshots:**  
-[TimeAgo Settings](https://www.imageforge.us/image/6OeW1)  
-[Example viewforum](https://www.imageforge.us/image/12Rf)  
-[Example viewforum](https://www.imageforge.us/image/1NZX)  
-[Example viewtopic](https://www.imageforge.us/image/1LcW)  
-
 **Language Support:** ar, cs, de, en, en_us, es, it, nl, tr. Language contributions are appreciated.  
 
 **Translators:**  
